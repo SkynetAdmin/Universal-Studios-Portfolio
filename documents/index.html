@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Documents - Hannibal Herrera</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .documents-grid {
+            display: grid;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .document-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .document-card:hover {
+            border-color: #1e3c72;
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .document-card h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .document-card h3::before {
+            content: '📄';
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .document-card p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .view-btn {
+            background: #1e3c72;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s ease;
+            margin-right: 10px;
+        }
+        
+        .view-btn:hover {
+            background: #2a5298;
+        }
+        
+        .portfolio-highlight {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+        }
+        
+        .portfolio-highlight h3 {
+            color: white;
+        }
+        
+        .portfolio-highlight p {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .portfolio-highlight .view-btn {
+            background: white;
+            color: #1e3c72;
+        }
+        
+        .portfolio-highlight .view-btn:hover {
+            background: rgba(255,255,255,0.9);
+        }
+        
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .contact-info h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .nav-links {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .nav-links a {
+            background: #1e3c72;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 0 10px;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background: #2a5298;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Professional Documents</h1>
+            <p>Hannibal Herrera - Technology Operations Manager</p>
+        </div>
+        
+        <div class="nav-links">
+            <a href="../website/">🌐 Interactive Portfolio</a>
+            <a href="../certificates/">🎓 Certifications</a>
+        </div>
+        
+        <div class="documents-grid">
+            <div class="document-card portfolio-highlight">
+                <h3>🎬 Technical Portfolio - Universal Horror Unleashed</h3>
+                <p>Comprehensive technical demonstration featuring automation systems, G-code programming, Python frameworks, and executive management dashboards specifically designed for Universal Horror Unleashed Technology Operations roles.</p>
+                <a href="Hannibal_Herrera_Technical_Portfolio_BADASS.md" class="view-btn">View Portfolio</a>
+                <a href="../website/" class="view-btn">Live Demo</a>
+            </div>
+            
+            <div class="document-card">
+                <h3>📄 ATS-Optimized Resume</h3>
+                <p>Professional resume optimized for Applicant Tracking Systems, highlighting technology operations experience, team leadership, and Universal Studios-specific qualifications.</p>
+                <a href="Hannibal_Herrera_Resume_Universal_Parks_ATS_OPTIMIZED.md" class="view-btn">View Resume</a>
+            </div>
+            
+            <div class="document-card">
+                <h3>✉️ Targeted Cover Letter</h3>
+                <p>Personalized cover letter specifically crafted for Universal Horror Unleashed Technology Operations Manager position, emphasizing crisis management experience and automation expertise.</p>
+                <a href="Hannibal_Herrera_Cover_Letter_Universal_Parks_TARGETED.md" class="view-btn">View Cover Letter</a>
+            </div>
+            
+            <div class="document-card">
+                <h3>🔬 Technical Portfolio - Horror Systems</h3>
+                <p>Specialized technical documentation focusing on horror entertainment automation systems, special effects control, and guest experience technology management.</p>
+                <a href="Hannibal_Herrera_Technical_Portfolio_Universal_Horror.md" class="view-btn">View Document</a>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <h3>📞 Contact Information</h3>
+            <p><strong>Hannibal Herrera</strong></p>
+            <p>📧 herrera.hannibal84@gmail.com</p>
+            <p>📱 702-626-7678</p>
+            <p>📍 Las Vegas, NV</p>
+        </div>
+    </div>
+</body>
+</html>
