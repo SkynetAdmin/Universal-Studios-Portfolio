@@ -343,6 +343,107 @@
             text-align: center;
         }
 
+        .demo-card {
+            background: rgba(139, 0, 0, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .demo-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .hardware-specs {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .hardware-specs h5 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .hardware-specs ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .hardware-specs li {
+            color: var(--text-light);
+            padding: 0.2rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .hardware-specs li::before {
+            content: '🔧';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Fog Machine Animation */
+        .fog-demo {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .fog-machine {
+            width: 200px;
+            height: 100px;
+            background: #333;
+            border: 2px solid #666;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fog-output {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+        }
+
+        .fog-active {
+            background: rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            animation: fogPulse 1s infinite;
+        }
+
+        @keyframes fogPulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.5); opacity: 0.7; }
+        }
+
+        .fog-burst {
+            animation: fogBurstEffect 2s ease-out;
+        }
+
+        @keyframes fogBurstEffect {
+            0% { transform: scale(1); opacity: 0; }
+            30% { transform: scale(3); opacity: 0.8; }
+            100% { transform: scale(5); opacity: 0; }
+        }
+
         .traffic-light-container {
             display: flex;
             justify-content: center;
@@ -707,41 +808,87 @@
 
     <!-- Demo Section -->
     <section id="demo" class="section">
-        <h2>Live Automation Demo</h2>
+        <h2>Live Horror Automation Demos</h2>
         <div class="demo-container">
-            <h3>Traffic Light Automation System</h3>
-            <p>This interactive demonstration showcases real-time automation control - the kind of precision required for Universal Horror Unleashed's special effects and safety systems.</p>
+            <h3>🎃 Universal Horror Special Effects Programming</h3>
+            <p>Interactive demonstrations of actual automation code for horror attractions - exactly what Universal needs!</p>
             
-            <div class="traffic-light-container">
-                <div class="traffic-light">
-                    <div class="light red" id="redLight"></div>
-                    <div class="light yellow" id="yellowLight"></div>
-                    <div class="light green" id="greenLight"></div>
+            <!-- Witch Robot Demo -->
+            <div class="demo-card">
+                <h4>👹 Animatronic Witch Controller</h4>
+                <p>Commercial shelf hardware + G-Code = Terrifying results!</p>
+                <div class="demo-controls">
+                    <button onclick="activateWitch()">🔮 Activate Witch</button>
+                    <button onclick="witchScream()">😱 Scream Sequence</button>
+                    <button onclick="witchDance()">💃 Horror Dance</button>
+                    <button onclick="emergencyStopWitch()">🛑 Emergency Stop</button>
+                </div>
+                <div class="hardware-specs">
+                    <h5>Hardware Stack:</h5>
+                    <ul>
+                        <li>Arduino Mega 2560 + RAMPS 1.4</li>
+                        <li>NEMA 17 Stepper Motors (head/arms)</li>
+                        <li>Servo Motors SG90 (jaw/eyes)</li>
+                        <li>DFPlayer Mini (scream sounds)</li>
+                        <li>WS2812B LED strips (spooky lighting)</li>
+                        <li>PIR Motion Sensors</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="control-panel">
-                <h4>Control Panel</h4>
-                <div class="buttons">
-                    <button onclick="activateLight('red')">Emergency Stop</button>
-                    <button onclick="activateLight('yellow')">Scene Transition</button>
-                    <button onclick="activateLight('green')">Horror Unleashed</button>
-                    <button onclick="startSequence()">Auto Sequence</button>
-                    <button onclick="stopSequence()">Stop</button>
-                    <button onclick="toggleHorrorMode()">Horror Mode</button>
+            <!-- Traffic Light Demo -->
+            <div class="demo-card">
+                <h4>🚦 Safety & Scene Control System</h4>
+                <p>Professional timing and emergency protocols for 24/7/365 operations</p>
+                <div class="traffic-light-container">
+                    <div class="traffic-light">
+                        <div class="light red" id="redLight"></div>
+                        <div class="light yellow" id="yellowLight"></div>
+                        <div class="light green" id="greenLight"></div>
+                    </div>
                 </div>
-                
-                <div class="code-display" id="codeDisplay">
-// Ready to demonstrate automation control...
-// Click any button above to see real-time code execution
+                <div class="demo-controls">
+                    <button onclick="activateLight('red')">🚨 Emergency Stop</button>
+                    <button onclick="activateLight('yellow')">⚡ Scene Transition</button>
+                    <button onclick="activateLight('green')">👹 Horror Unleashed</button>
+                    <button onclick="startSequence()">🔄 Auto Sequence</button>
+                    <button onclick="stopSequence()">⏹️ Stop</button>
+                    <button onclick="toggleHorrorMode()">🎃 Horror Mode</button>
+                </div>
+            </div>
 
-/* This system demonstrates:
-   - Real-time control capabilities
-   - Emergency stop protocols
-   - Automated sequencing
-   - Cross-platform compatibility
-   - Perfect for UHU special effects! */
+            <!-- Fog Machine Controller -->
+            <div class="demo-card">
+                <h4>🌫️ Fog Machine Choreography</h4>
+                <p>Synchronized fog effects with precise timing control</p>
+                <div class="fog-demo">
+                    <div class="fog-machine" id="fogMachine">
+                        <div class="fog-output" id="fogOutput"></div>
+                    </div>
                 </div>
+                <div class="demo-controls">
+                    <button onclick="fogBurst()">💨 Fog Burst</button>
+                    <button onclick="fogCascade()">🌊 Cascading Fog</button>
+                    <button onclick="fogStrobe()">⚡ Strobe + Fog</button>
+                    <button onclick="clearFog()">🌬️ Clear</button>
+                </div>
+            </div>
+
+            <!-- Python Script Demo -->
+            <div class="demo-card">
+                <h4>🐍 Python Automation Scripts</h4>
+                <p>Real-world automation for Universal's diverse hardware ecosystem</p>
+                <div class="demo-controls">
+                    <button onclick="showPythonDemo('serial')">📡 Serial Control</button>
+                    <button onclick="showPythonDemo('raspberry')">🥧 Raspberry Pi</button>
+                    <button onclick="showPythonDemo('docker')">🐳 Docker Deploy</button>
+                    <button onclick="showPythonDemo('monitoring')">📊 System Monitor</button>
+                </div>
+            </div>
+
+            <div class="code-display" id="codeDisplay">
+// Click any demo button to see live automation code!
+// Each demo shows real programming for Universal's hardware needs.
             </div>
         </div>
     </section>
@@ -797,303 +944,6 @@
             </p>
         </div>
     </footer>
-
-    <script src="portfolio.js"></script>
-</body>
-</html>
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(255, 102, 0, 0.5);
-        }
-
-        button:active {
-            transform: translateY(1px);
-        }
-
-        .code-display {
-            background: #000;
-            border: 2px solid #00ff00;
-            border-radius: 10px;
-            padding: 2rem;
-            margin: 2rem 0;
-            font-family: 'Courier New', monospace;
-            color: #00ff00;
-            text-align: left;
-            overflow-x: auto;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .status-display {
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #ff6600;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            color: #ff6600;
-            font-size: 1.3rem;
-            text-align: center;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .platform-tabs {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .tab {
-            background: #333;
-            color: #00ff00;
-            border: 2px solid #00ff00;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .tab.active {
-            background: #00ff00;
-            color: #000;
-        }
-
-        .horror-section {
-            background: rgba(139, 0, 0, 0.1);
-            border: 2px solid #8b0000;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 3rem auto;
-            max-width: 1000px;
-            text-align: center;
-        }
-
-        .horror-title {
-            color: #8b0000;
-            font-size: 2.5rem;
-            text-shadow: 0 0 20px #8b0000;
-            margin-bottom: 1rem;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-            padding: 0 2rem;
-        }
-
-        .skill-card {
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #00ff00;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
-        }
-
-        .contact-section {
-            background: rgba(255, 102, 0, 0.1);
-            border: 2px solid #ff6600;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 3rem auto;
-            max-width: 600px;
-            text-align: center;
-        }
-
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-code {
-            position: absolute;
-            color: rgba(0, 255, 0, 0.1);
-            font-family: 'Courier New', monospace;
-            animation: float 10s infinite linear;
-            font-size: 0.8rem;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
-        }
-
-        .emergency-button {
-            background: linear-gradient(45deg, #ff0000, #8b0000) !important;
-            animation: emergency-blink 1s infinite;
-        }
-
-        @keyframes emergency-blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.5; }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .buttons { flex-direction: column; align-items: center; }
-            .traffic-light-container { flex-direction: column; align-items: center; }
-        }
-    </style>
-</head>
-<body>
-    <div class="floating-elements" id="floatingElements"></div>
-    
-    <div class="hero">
-        <h1>HANNIBAL HERRERA</h1>
-        <p class="subtitle">Interactive Technology Portfolio</p>
-        <p style="color: #ff6600; font-size: 1.2rem;">Technology Operations Manager - Universal Horror Unleashed</p>
-        <p style="color: #00ff00;">🎖️ Military Veteran | 🤖 Automation Expert | 🎃 Horror Enthusiast</p>
-    </div>
-
-    <div class="control-panel">
-        <h2 style="color: #ff6600; margin-bottom: 1rem;">🚦 INTERACTIVE TRAFFIC LIGHT CONTROLLER</h2>
-        <p style="margin-bottom: 2rem;">Demonstrating automation skills perfect for Universal Horror Unleashed special effects!</p>
-        
-        <div class="traffic-light-container">
-            <div class="traffic-light">
-                <h3 style="color: #ff6600; margin-bottom: 1rem;">EMERGENCY STOP</h3>
-                <div class="light red" id="redLight"></div>
-                <div class="light yellow" id="yellowLight"></div>
-                <div class="light green" id="greenLight"></div>
-            </div>
-        </div>
-
-        <div class="status-display" id="statusDisplay">
-            🚦 Ready to demonstrate automation skills...
-        </div>
-
-        <div class="buttons">
-            <button onclick="emergencyStop()" class="emergency-button">🚨 EMERGENCY STOP</button>
-            <button onclick="startSequence()">▶️ START SEQUENCE</button>
-            <button onclick="manualRed()">🔴 RED LIGHT</button>
-            <button onclick="manualYellow()">🟡 YELLOW LIGHT</button>
-            <button onclick="manualGreen()">🟢 GREEN LIGHT</button>
-            <button onclick="horrorMode()">🎃 HORROR MODE</button>
-        </div>
-
-        <div class="platform-tabs">
-            <div class="tab active" onclick="showCode('gcode')">G-Code</div>
-            <div class="tab" onclick="showCode('windows')">Windows</div>
-            <div class="tab" onclick="showCode('macos')">macOS</div>
-            <div class="tab" onclick="showCode('linux')">Linux</div>
-            <div class="tab" onclick="showCode('horror')">Horror Effects</div>
-        </div>
-
-        <div class="code-display" id="codeDisplay">
-; G-Code Traffic Light Controller
-; Perfect for UHU Special Effects!
-
-M117 "System Initializing..."
-G28 ; Home all positions
-M106 S0 ; All lights off
-
-; Ready for commands...
-        </div>
-    </div>
-
-    <div class="horror-section">
-        <h2 class="horror-title">🎃 UNIVERSAL HORROR UNLEASHED APPLICATIONS</h2>
-        <p style="color: #8b0000; font-size: 1.3rem; margin-bottom: 2rem;">
-            This traffic light controller demonstrates EXACTLY the skills needed for UHU special effects:
-        </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
-            <div style="background: rgba(139, 0, 0, 0.2); padding: 1rem; border-radius: 10px;">
-                <h3 style="color: #ff6600;">🎭 Animatronics</h3>
-                <p>G-code controls creature movements</p>
-            </div>
-            <div style="background: rgba(139, 0, 0, 0.2); padding: 1rem; border-radius: 10px;">
-                <h3 style="color: #ff6600;">💡 Lighting</h3>
-                <p>Automated strobe & mood effects</p>
-            </div>
-            <div style="background: rgba(139, 0, 0, 0.2); padding: 1rem; border-radius: 10px;">
-                <h3 style="color: #ff6600;">🌫️ Fog Machines</h3>
-                <p>Timed atmospheric effects</p>
-            </div>
-            <div style="background: rgba(139, 0, 0, 0.2); padding: 1rem; border-radius: 10px;">
-                <h3 style="color: #ff6600;">🚨 Safety</h3>
-                <p>Emergency stop protocols</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="skills-grid">
-        <div class="skill-card">
-            <h3 style="color: #ff6600;">🎖️ Military Experience</h3>
-            <p>14 Years Service</p>
-            <p>6 Downed Aircraft Recovery Missions (Iraq)</p>
-            <p>Trained hundreds of personnel</p>
-            <p>Crisis management expert</p>
-        </div>
-        
-        <div class="skill-card">
-            <h3 style="color: #ff6600;">💻 Cross-Platform Expert</h3>
-            <p>Windows, macOS, Linux</p>
-            <p>Docker containerization</p>
-            <p>Network & Wi-Fi troubleshooting</p>
-            <p>24/7/365 operations</p>
-        </div>
-        
-        <div class="skill-card">
-            <h3 style="color: #ff6600;">🤖 Automation & Robotics</h3>
-            <p>G-code/M-code programming</p>
-            <p>3D printing technology</p>
-            <p>Arduino & Raspberry Pi</p>
-            <p>Real-time control systems</p>
-        </div>
-        
-        <div class="skill-card">
-            <h3 style="color: #ff6600;">🎃 Horror Culture Passion</h3>
-            <p>Married on Halloween</p>
-            <p>Traveled to Derry, Ireland</p>
-            <p>Authentic horror enthusiasm</p>
-            <p>Guest experience understanding</p>
-        </div>
-        
-        <div class="skill-card">
-            <h3 style="color: #ff6600;">🗣️ Multilingual</h3>
-            <p>English (Native)</p>
-            <p>Spanish (Moderate)</p>
-            <p>ASL Level 2</p>
-            <p>Perfect for Las Vegas diversity</p>
-        </div>
-        
-        <div class="skill-card">
-            <h3 style="color: #ff6600;">📍 Local Advantage</h3>
-            <p>Las Vegas Resident</p>
-            <p>5.5 miles from Area 15</p>
-            <p>Complete availability</p>
-            <p>Reliable transportation</p>
-        </div>
-    </div>
-
-    <div class="contact-section">
-        <h2 style="color: #ff6600; margin-bottom: 1rem;">📞 READY TO ROCK AT UNIVERSAL HORROR UNLEASHED!</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 1rem;">
-            <strong>Hannibal Herrera</strong><br>
-            📧 herrera.hannibal84@gmail.com<br>
-            📱 702-626-7678<br>
-            📍 Las Vegas, NV (5.5 miles from Area 15)
-        </p>
-        <p style="color: #00ff00; font-size: 1.1rem;">
-            🎢 Ready to bring military-grade crisis management, cutting-edge automation skills, 
-            and authentic horror passion to Universal Horror Unleashed's technology operations! 👻⚡
-        </p>
-    </div>
 
     <script src="portfolio.js"></script>
 </body>

@@ -5,9 +5,24 @@
 
 ## 🌐 INTERACTIVE PORTFOLIO WEBSITE
 
-**🎯 View Live Demo: [file:///c:/Users/Hannibal/Desktop/Vegas%20Job%20portfolio/website/index.html](file:///c:/Users/Hannibal/Desktop/Vegas%20Job%20portfolio/website/index.html)**
+**🎯 DEPLOYMENT OPTIONS FOR UNIVERSAL ACCESS:**
 
-This comprehensive portfolio includes:
+### Option 1: GitHub Pages (Recommended)
+- **Setup**: Repository ready for GitHub Pages deployment
+- **URL**: Will be `https://hannibal84.github.io/universal-horror-portfolio/website/`
+- **Professional**: Free, reliable, industry-standard hosting
+
+### Option 2: Local Demonstration
+- **File Location**: `c:\Users\Hannibal\Desktop\Vegas Job portfolio\website\index.html`
+- **Perfect for**: In-person interviews or screen sharing demonstrations
+- **Advantage**: Full functionality without internet dependency
+
+### Option 3: USB/Email Delivery
+- **Portable**: Complete website folder can be zipped and sent
+- **Offline Access**: Hiring team can run locally for full interactivity
+- **Professional**: Shows consideration for their technical environment
+
+**📁 Portfolio Package Includes:**
 - **Interactive Automation Demo**: Real-time traffic light control system
 - **Professional Skills Showcase**: Technical expertise and military experience
 - **Horror Mode Feature**: Demonstrating authentic passion (Halloween wedding story!)
@@ -71,9 +86,21 @@ This portfolio demonstrates my unique qualifications for the Technology Operatio
 ## 🤖 ROBOTICS & AUTOMATION EXPERTISE
 
 ### Interactive Technical Demonstration
-**🎮 Live Demo Available**: [Interactive Automation Controller](file:///c:/Users/Hannibal/Desktop/Vegas%20Job%20portfolio/website/index.html#demo)
+**🎮 WEBSITE DEMONSTRATION OPTIONS:**
 
-Experience real-time automation control demonstrating:
+**Option A: GitHub Pages Deployment**
+- Professional hosted website (setup in progress)
+- URL: `https://hannibal84.github.io/universal-horror-portfolio/website/`
+
+**Option B: Local File Access**  
+- Complete website package available for local testing
+- Perfect for in-person demonstration or screen sharing
+
+**Option C: Portable Portfolio**
+- Zipped website folder for email delivery
+- Runs offline on any computer with web browser
+
+**Interactive Features Demonstrated:**
 - **Emergency Stop Protocols** (Red Light) - Critical safety systems
 - **Scene Transition Control** (Yellow Light) - Smooth horror experience transitions  
 - **Full Horror Activation** (Green Light) - Complete special effects coordination
