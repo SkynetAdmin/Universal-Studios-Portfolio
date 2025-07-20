@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Document PDF Converter</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .converter-section {
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .file-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .convert-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .convert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .file-list {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .convert-individual {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .convert-individual:hover {
+            background: #5a67d8;
+        }
+
+        /* PDF Styles for professional formatting */
+        .pdf-content {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+        }
+
+        .pdf-content h1 {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .pdf-content h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #000;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .pdf-content h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .pdf-content p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .pdf-content ul, .pdf-content ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .pdf-content li {
+            margin-bottom: 5px;
+        }
+
+        .pdf-content strong {
+            font-weight: bold;
+        }
+
+        .pdf-content em {
+            font-style: italic;
+        }
+
+        .pdf-content hr {
+            border: none;
+            border-top: 1px solid #333;
+            margin: 20px 0;
+        }
+
+        .pdf-content blockquote {
+            margin: 15px 0;
+            padding: 10px 20px;
+            border-left: 3px solid #667eea;
+            background: #f8f9ff;
+        }
+
+        .pdf-content code {
+            font-family: 'Courier New', monospace;
+            background: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .pdf-content pre {
+            font-family: 'Courier New', monospace;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .contact-info {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📄 Professional Document PDF Converter</h1>
+        
+        <div class="converter-section">
+            <h2>Convert Documents to Professional PDF</h2>
+            <p>Select markdown files to convert to professionally formatted PDFs</p>
+            
+            <input type="file" class="file-input" id="fileInput" multiple accept=".md" />
+            <button class="convert-btn" onclick="convertAllFiles()">🚀 Convert All to PDF</button>
+            
+            <div class="status" id="status"></div>
+            
+            <div class="file-list" id="fileList" style="display: none;">
+                <h3>Selected Files:</h3>
+                <div id="fileItems"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedFiles = [];
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            selectedFiles = Array.from(event.target.files);
+            displayFileList();
+        });
+
+        function displayFileList() {
+            const fileList = document.getElementById('fileList');
+            const fileItems = document.getElementById('fileItems');
+            
+            if (selectedFiles.length > 0) {
+                fileList.style.display = 'block';
+                fileItems.innerHTML = '';
+                
+                selectedFiles.forEach((file, index) => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
+                        <span>${file.name}</span>
+                        <button class="convert-individual" onclick="convertSingleFile(${index})">
+                            Convert to PDF
+                        </button>
+                    `;
+                    fileItems.appendChild(fileItem);
+                });
+            } else {
+                fileList.style.display = 'none';
+            }
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+
+        async function convertMarkdownToPDF(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const markdown = e.target.result;
+                        const html = marked.parse(markdown);
+                        
+                        // Create a professional document container
+                        const pdfContent = document.createElement('div');
+                        pdfContent.className = 'pdf-content';
+                        pdfContent.innerHTML = html;
+                        
+                        // Clean up the HTML for professional formatting
+                        cleanupForPDF(pdfContent);
+                        
+                        // Configure PDF options for professional documents
+                        const options = {
+                            margin: [0.75, 0.75, 0.75, 0.75],
+                            filename: file.name.replace('.md', '.pdf'),
+                            image: { type: 'jpeg', quality: 0.98 },
+                            html2canvas: { 
+                                scale: 2,
+                                useCORS: true,
+                                letterRendering: true
+                            },
+                            jsPDF: { 
+                                unit: 'in', 
+                                format: 'letter', 
+                                orientation: 'portrait',
+                                compress: true
+                            }
+                        };
+                        
+                        // Convert to PDF
+                        html2pdf().set(options).from(pdfContent).save().then(() => {
+                            resolve(`Successfully converted ${file.name} to PDF`);
+                        }).catch(reject);
+                        
+                    } catch (error) {
+                        reject(`Error processing ${file.name}: ${error.message}`);
+                    }
+                };
+                reader.onerror = () => reject(`Error reading ${file.name}`);
+                reader.readAsText(file);
+            });
+        }
+
+        function cleanupForPDF(element) {
+            // Clean up emojis and special characters for professional appearance
+            const textNodes = document.createTreeWalker(
+                element,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+            
+            const nodes = [];
+            let node;
+            while (node = textNodes.nextNode()) {
+                nodes.push(node);
+            }
+            
+            nodes.forEach(textNode => {
+                // Clean up common formatting issues
+                let text = textNode.textContent;
+                
+                // Keep professional emojis for contact info
+                text = text.replace(/📧/g, 'Email:');
+                text = text.replace(/📱/g, 'Phone:');
+                text = text.replace(/📍/g, 'Location:');
+                text = text.replace(/⏰/g, 'Availability:');
+                
+                // Clean up other emojis but keep checkmarks
+                text = text.replace(/[^\x00-\x7F✅]/g, '');
+                
+                textNode.textContent = text;
+            });
+            
+            // Ensure proper spacing and formatting
+            const headers = element.querySelectorAll('h1, h2, h3');
+            headers.forEach(header => {
+                header.style.pageBreakAfter = 'avoid';
+                header.style.marginTop = '20px';
+                header.style.marginBottom = '10px';
+            });
+            
+            // Format contact information
+            const firstP = element.querySelector('p');
+            if (firstP && (firstP.textContent.includes('Email:') || firstP.textContent.includes('Phone:'))) {
+                firstP.className = 'contact-info';
+            }
+        }
+
+        async function convertSingleFile(index) {
+            const file = selectedFiles[index];
+            try {
+                showStatus(`Converting ${file.name}...`, 'success');
+                await convertMarkdownToPDF(file);
+                showStatus(`✅ Successfully converted ${file.name} to PDF!`, 'success');
+            } catch (error) {
+                showStatus(`❌ Error converting ${file.name}: ${error}`, 'error');
+            }
+        }
+
+        async function convertAllFiles() {
+            if (selectedFiles.length === 0) {
+                showStatus('Please select at least one markdown file', 'error');
+                return;
+            }
+            
+            showStatus(`Converting ${selectedFiles.length} files...`, 'success');
+            
+            let successCount = 0;
+            let errorCount = 0;
+            
+            for (const file of selectedFiles) {
+                try {
+                    await convertMarkdownToPDF(file);
+                    successCount++;
+                } catch (error) {
+                    console.error(`Error converting ${file.name}:`, error);
+                    errorCount++;
+                }
+                
+                // Small delay between conversions
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+            
+            if (errorCount === 0) {
+                showStatus(`✅ Successfully converted all ${successCount} files to PDF!`, 'success');
+            } else {
+                showStatus(`⚠️ Converted ${successCount} files successfully, ${errorCount} failed`, 'error');
+            }
+        }
+
+        // Auto-load files from documents folder (simulation)
+        window.addEventListener('load', function() {
+            showStatus('📁 Select your resume, cover letter, and portfolio markdown files to convert them to professional PDFs', 'success');
+        });
+    </script>
+</body>
+</html>

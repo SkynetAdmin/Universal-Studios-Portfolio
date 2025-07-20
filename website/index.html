@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hannibal Herrera - Technology Operations Manager | Universal Horror Unleashed</title>
-    <meta name="description" content="Professional portfolio of Hannibal Herrera - Technology Operations Manager candidate for Universal Horror Unleashed. 14 years military experience, Docker expertise, automation specialist.">
-    <meta name="keywords" content="technology operations, universal studios, horror, automation, docker, military leadership, las vegas, emergency response">
+    <title>HANNIBAL HERRERA | Universal Horror Unleashed Portfolio</title>
+    <meta name="description" content="Technology Operations Manager Portfolio - Universal Horror Unleashed">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #ff6600;
-            --secondary-color: #00ff00;
-            --accent-color: #8b0000;
-            --dark-bg: #1a1a1a;
-            --text-light: #ffffff;
-            --text-dark: #333333;
-            --gradient-bg: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 50%, #000000 100%);
+            --universal-red: #e31e24;
+            --universal-orange: #ff6b35;
+            --horror-blood: #8b0000;
+            --horror-black: #0a0a0a;
+            --horror-grey: #1a1a1a;
+            --ghost-white: #f8f8ff;
+            --neon-green: #39ff14;
+            --shadow-purple: #4b0082;
         }
 
         * {
@@ -946,5 +947,150 @@
     </footer>
 
     <script src="portfolio.js"></script>
+    <script>
+        // Emergency workaround - JavaScript functions embedded directly
+        let currentSequence = null;
+        let horrorModeActive = false;
+
+        function activateLight(color) {
+            // Clear all lights first
+            document.getElementById('redLight').classList.remove('active');
+            document.getElementById('yellowLight').classList.remove('active');
+            document.getElementById('greenLight').classList.remove('active');
+            
+            // Activate selected light
+            document.getElementById(color + 'Light').classList.add('active');
+            
+            // Show corresponding code
+            showCode(color);
+            
+            // Auto-clear after 3 seconds
+            setTimeout(() => {
+                document.getElementById(color + 'Light').classList.remove('active');
+            }, 3000);
+        }
+
+        function startSequence() {
+            if (currentSequence) return;
+            
+            showCodeDisplay('Starting automated sequence...\nM117 "Traffic Control Active"\nG4 P1000 ; Wait 1 second');
+            
+            currentSequence = setInterval(() => {
+                activateLight('red');
+                setTimeout(() => activateLight('yellow'), 2000);
+                setTimeout(() => activateLight('green'), 4000);
+            }, 6000);
+        }
+
+        function stopSequence() {
+            if (currentSequence) {
+                clearInterval(currentSequence);
+                currentSequence = null;
+                showCodeDisplay('Sequence stopped.\nM112 ; Emergency stop\nM117 "System idle"');
+            }
+        }
+
+        function toggleHorrorMode() {
+            horrorModeActive = !horrorModeActive;
+            document.body.classList.toggle('horror-mode', horrorModeActive);
+            
+            if (horrorModeActive) {
+                showCodeDisplay('HORROR MODE ACTIVATED!\n; Spooky effects enabled\nM106 S255 ; Fog machines ON\nM300 S220 P500 ; Horror sound');
+            } else {
+                showCodeDisplay('Horror mode disabled.\nM107 ; All effects OFF\nM117 "Normal operation"');
+            }
+        }
+
+        function showCode(type) {
+            let code = '';
+            switch(type) {
+                case 'red':
+                    code = '; EMERGENCY STOP PROTOCOL\nM112 ; Immediate stop\nM117 "EMERGENCY ACTIVATED"\nG4 P5000 ; Hold for 5 seconds\n; All attractions halted';
+                    break;
+                case 'yellow':
+                    code = '; SCENE TRANSITION\nM117 "Scene changing..."\nG1 F1500 ; Slow movement\nM106 S128 ; 50% fog effect\n; Prepare for next scene';
+                    break;
+                case 'green':
+                    code = '; HORROR UNLEASHED!\nM117 "Scare sequence active"\nG1 F3000 ; Fast movement\nM106 S255 ; Full fog\nM300 S440 P1000 ; Scream sound\n; Maximum horror!';
+                    break;
+            }
+            showCodeDisplay(code);
+        }
+
+        function showCodeDisplay(code) {
+            const display = document.getElementById('codeDisplay');
+            if (display) {
+                display.textContent = code;
+            }
+        }
+
+        // Animatronic functions
+        function activateWitch() {
+            showCodeDisplay('// WITCH ACTIVATION SEQUENCE\nM117 "Awakening the witch..."\nG28 ; Home position\nG1 X50 F1500 ; Turn head slowly\nM106 S255 ; Glowing eyes\nG4 P2000 ; Dramatic pause\nM300 S330 P500 ; Witch cackle');
+        }
+
+        function witchScream() {
+            showCodeDisplay('// WITCH SCREAM SEQUENCE\nM117 "SCREAM ACTIVATED"\nG1 Y20 F3000 ; Open jaw fast\nM300 S440 P2000 ; Blood-curdling scream\nG1 Y0 F500 ; Close jaw slowly\nM106 S0 ; Dim eyes\nG4 P1000 ; Silence...');
+        }
+
+        function witchDance() {
+            showCodeDisplay('// WITCH HORROR DANCE\nM117 "Dance of terror"\nG1 X30 Y10 F2000 ; Arm swing\nG1 X-30 Y-10 F2000 ; Other arm\nG1 Z10 F1000 ; Head bob\nG1 Z0 F1000 ; Return\n; Repeat pattern 3 times');
+        }
+
+        function emergencyStopWitch() {
+            showCodeDisplay('// EMERGENCY STOP - WITCH\nM112 ; IMMEDIATE STOP\nM107 ; All effects OFF\nM117 "WITCH EMERGENCY STOP"\nG28 ; Return to safe position\n; System secured');
+        }
+
+        // Fog machine functions
+        function fogBurst() {
+            const fogOutput = document.getElementById('fogOutput');
+            if (fogOutput) {
+                fogOutput.classList.add('fog-burst');
+                setTimeout(() => fogOutput.classList.remove('fog-burst'), 2000);
+            }
+            showCodeDisplay('// FOG BURST SEQUENCE\nfog_controller.burst(intensity=85, duration=3)\nlog_event("Fog burst activated")\ntime.sleep(0.5)\n// Dramatic fog release');
+        }
+
+        function fogCascade() {
+            showCodeDisplay('// CASCADING FOG EFFECT\nfor zone in [1,2,3,4]:\n    fog_zone_activate(zone)\n    time.sleep(0.5)\n// Staggered fog release\nlog_event("Cascade complete")');
+        }
+
+        function fogStrobe() {
+            showCodeDisplay('// STROBE + FOG COMBO\nstrobe_light.activate()\nfog_controller.burst(intensity=100)\ntime.sleep(0.1)\nstrobe_light.flash(frequency=10)\n// Intense scare effect');
+        }
+
+        function clearFog() {
+            const fogOutput = document.getElementById('fogOutput');
+            if (fogOutput) {
+                fogOutput.classList.remove('fog-active', 'fog-burst');
+            }
+            showCodeDisplay('// CLEAR FOG SYSTEM\nfog_controller.stop_all()\nventilation.activate()\nlog_event("Fog cleared")\n// Reset for next sequence');
+        }
+
+        // Python demo functions
+        function showPythonDemo(type) {
+            let code = '';
+            switch(type) {
+                case 'serial':
+                    code = '# SERIAL DEVICE CONTROL\nimport serial\nimport time\n\narduino = serial.Serial("COM3", 9600)\ncommand = "ACTIVATE_WITCH\\n"\narduino.write(command.encode())\nresponse = arduino.readline().decode()\nprint(f"Device response: {response}")';
+                    break;
+                case 'raspberry':
+                    code = '# RASPBERRY PI CONTROLLER\nimport RPi.GPIO as GPIO\nimport time\n\nGPIO.setmode(GPIO.BCM)\nGPIO.setup(18, GPIO.OUT)  # Fog machine\nGPIO.setup(24, GPIO.OUT)  # Strobe light\n\ndef horror_sequence():\n    GPIO.output(18, True)  # Fog ON\n    time.sleep(2)\n    GPIO.output(24, True)  # Strobe ON';
+                    break;
+                case 'docker':
+                    code = '# DOCKER DEPLOYMENT\nversion: "3.8"\nservices:\n  horror-controller:\n    image: universal/horror:latest\n    ports:\n      - "8080:8080"\n    environment:\n      - ATTRACTION_MODE=production\n    restart: always\n  monitoring:\n    image: universal/monitor:latest';
+                    break;
+                case 'monitoring':
+                    code = '# SYSTEM MONITORING\nimport psutil\nimport time\n\ndef monitor_attractions():\n    while True:\n        cpu = psutil.cpu_percent()\n        memory = psutil.virtual_memory().percent\n        \n        if cpu > 80:\n            alert("High CPU usage detected")\n        \n        log_status(f"CPU: {cpu}%, RAM: {memory}%")\n        time.sleep(30)';
+                    break;
+            }
+            showCodeDisplay(code);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showCodeDisplay('// Universal Horror Unleashed - Technology Operations Demo\n// Click any button to see live automation code!\n// Each demo shows real programming for horror attractions.\n\nM117 "System ready for demonstration"\nlog_event("Portfolio demo initialized")');
+        });
+    </script>
 </body>
 </html>
