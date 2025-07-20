@@ -478,6 +478,85 @@
             100% { transform: scale(1); }
         }
 
+        /* Hardware Terminal */
+        .hardware-terminal {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--neon-green);
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: rgba(57, 255, 20, 0.1);
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--neon-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-title {
+            color: var(--neon-green);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .terminal-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .terminal-status {
+            color: var(--neon-green);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border: 1px solid var(--neon-green);
+            border-radius: 3px;
+            background: rgba(57, 255, 20, 0.1);
+        }
+
+        .terminal-clear {
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-clear:hover {
+            background: var(--neon-green);
+            color: var(--horror-black);
+        }
+
+        .terminal-output {
+            padding: 1rem;
+            color: var(--neon-green);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .hardware-bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hardware-bottom-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Fog Machine Animation */
         .fog-demo {
             display: flex;
@@ -960,19 +1039,38 @@
                 <div class="demo-controls">
                     <button onclick="activateWitch()">🔮 Activate Witch</button>
                     <button onclick="witchScream()">😱 Scream Sequence</button>
-                    <button onclick="witchDance()">💃 Horror Dance</button>
+                    <button onclick="witchDance()">� Horror Dance</button>
                     <button onclick="emergencyStopWitch()">🛑 Emergency Stop</button>
                 </div>
-                <div class="hardware-specs">
-                    <h5>Hardware Stack:</h5>
-                    <ul>
-                        <li>Arduino Mega 2560 + RAMPS 1.4</li>
-                        <li>NEMA 17 Stepper Motors (head/arms)</li>
-                        <li>Servo Motors SG90 (jaw/eyes)</li>
-                        <li>DFPlayer Mini (scream sounds)</li>
-                        <li>WS2812B LED strips (spooky lighting)</li>
-                        <li>PIR Motion Sensors</li>
-                    </ul>
+                
+                <!-- Hardware Specs and Terminal Side by Side -->
+                <div class="hardware-bottom-section">
+                    <div class="hardware-specs">
+                        <h5>Hardware Stack:</h5>
+                        <ul>
+                            <li>Arduino Mega 2560 + RAMPS 1.4</li>
+                            <li>NEMA 17 Stepper Motors (head/arms)</li>
+                            <li>Servo Motors SG90 (jaw/eyes)</li>
+                            <li>DFPlayer Mini (scream sounds)</li>
+                            <li>WS2812B LED strips (spooky lighting)</li>
+                            <li>PIR Motion Sensors</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Real-time Terminal Display -->
+                    <div class="hardware-terminal">
+                        <div class="terminal-header">
+                            <span class="terminal-title">🖥️ Hardware Terminal - COM3:9600</span>
+                            <div class="terminal-controls">
+                                <span class="terminal-status" id="terminalStatus">CONNECTED</span>
+                                <button class="terminal-clear" onclick="clearTerminal()">Clear</button>
+                            </div>
+                        </div>
+                        <div class="terminal-output" id="terminalOutput">Arduino Mega 2560 - WITCH Controller v2.1
+> System initialized
+> All motors homed
+> Ready for commands...</div>
+                    </div>
                 </div>
             </div>
 
@@ -1265,6 +1363,9 @@
         function witchScream() {
             showCodeDisplay('// WITCH SCREAM SEQUENCE\nM117 "SCREAM ACTIVATED"\nG1 Y20 F3000 ; Open jaw fast\nM300 S440 P2000 ; Blood-curdling scream\nG1 Y0 F500 ; Close jaw slowly\nM106 S0 ; Dim eyes\nG4 P1000 ; Silence...');
             
+            logToTerminal('> SCREAM_SEQUENCE initiated');
+            logToTerminal('> G1 Y20 F3000 - Opening jaw at high speed');
+            
             // Simulate scream sequence
             updateHardwareStatus('jawServo', 'OPENING', 'warning');
             updateHardwareStatus('jawPosition', '100%');
@@ -1272,6 +1373,12 @@
             updateHardwareStatus('audioLevel', '100%');
             
             setTimeout(() => {
+                logToTerminal('> M300 S440 P2000 - SCREAM at 440Hz for 2 seconds');
+            }, 500);
+            
+            setTimeout(() => {
+                logToTerminal('> G1 Y0 F500 - Closing jaw slowly');
+                logToTerminal('> M106 S0 - Dimming eyes to 20%');
                 updateHardwareStatus('jawServo', 'CLOSING', 'active');
                 updateHardwareStatus('jawPosition', '0%');
                 updateHardwareStatus('eyeLeds', 'DIMMING', 'warning');
@@ -1279,6 +1386,7 @@
             }, 2000);
             
             setTimeout(() => {
+                logToTerminal('> Scream sequence complete - WITCH IDLE');
                 updateHardwareStatus('jawServo', 'CLOSED');
                 updateHardwareStatus('audioSystem', 'SILENT');
                 updateHardwareStatus('audioLevel', '0%');
@@ -1290,25 +1398,31 @@
         function witchDance() {
             showCodeDisplay('// WITCH HORROR DANCE\nM117 "Dance of terror"\nG1 X30 Y10 F2000 ; Arm swing\nG1 X-30 Y-10 F2000 ; Other arm\nG1 Z10 F1000 ; Head bob\nG1 Z0 F1000 ; Return\n; Repeat pattern 3 times');
             
+            logToTerminal('> DANCE_SEQUENCE starting - 3 cycles');
+            
             // Simulate dance sequence
             let danceStep = 0;
             const danceInterval = setInterval(() => {
                 switch(danceStep % 4) {
                     case 0:
+                        logToTerminal(`> Cycle ${Math.floor(danceStep/4)+1}: G1 X30 Y10 - Swing right & bob up`);
                         updateHardwareStatus('armMotors', 'SWING RIGHT', 'active');
                         updateHardwareStatus('armPosition', '30°');
                         updateHardwareStatus('headMotor', 'BOB UP', 'active');
                         updateHardwareStatus('headPosition', '10°');
                         break;
                     case 1:
+                        logToTerminal('> G1 X-30 Y-10 - Swing left');
                         updateHardwareStatus('armMotors', 'SWING LEFT', 'active');
                         updateHardwareStatus('armPosition', '-30°');
                         break;
                     case 2:
+                        logToTerminal('> G1 Z-10 - Head bob down');
                         updateHardwareStatus('headMotor', 'BOB DOWN', 'active');
                         updateHardwareStatus('headPosition', '-10°');
                         break;
                     case 3:
+                        logToTerminal('> G1 X0 Y0 Z0 - Return to center');
                         updateHardwareStatus('armMotors', 'CENTER', 'active');
                         updateHardwareStatus('armPosition', '0°');
                         updateHardwareStatus('headMotor', 'CENTER', 'active');
@@ -1320,6 +1434,7 @@
                 if (danceStep >= 12) { // 3 full cycles
                     clearInterval(danceInterval);
                     setTimeout(() => {
+                        logToTerminal('> Dance complete - All motors IDLE');
                         updateHardwareStatus('armMotors', 'IDLE');
                         updateHardwareStatus('headMotor', 'IDLE');
                     }, 500);
@@ -1330,6 +1445,10 @@
         function emergencyStopWitch() {
             showCodeDisplay('// EMERGENCY STOP - WITCH\nM112 ; IMMEDIATE STOP\nM107 ; All effects OFF\nM117 "WITCH EMERGENCY STOP"\nG28 ; Return to safe position\n; System secured');
             
+            logToTerminal('> ⚠️  EMERGENCY STOP ACTIVATED ⚠️');
+            logToTerminal('> M112 - IMMEDIATE HALT of all motors');
+            logToTerminal('> M107 - All effects and lighting OFF');
+            
             // Emergency stop all systems
             updateHardwareStatus('headMotor', 'E-STOP', 'error');
             updateHardwareStatus('armMotors', 'E-STOP', 'error');
@@ -1338,6 +1457,8 @@
             updateHardwareStatus('audioSystem', 'MUTED', 'error');
             
             setTimeout(() => {
+                logToTerminal('> G28 - Returning to safe home position');
+                logToTerminal('> System secured - Ready for new commands');
                 updateHardwareStatus('headMotor', 'IDLE');
                 updateHardwareStatus('headPosition', '0°');
                 updateHardwareStatus('armMotors', 'IDLE');
@@ -1366,6 +1487,60 @@
                     }
                 }
             }
+        }
+
+        // Terminal logging functions
+        function logToTerminal(message) {
+            const terminal = document.getElementById('terminalOutput');
+            if (terminal) {
+                const timestamp = new Date().toLocaleTimeString();
+                terminal.textContent += `\n[${timestamp}] ${message}`;
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        }
+
+        function clearTerminal() {
+            const terminal = document.getElementById('terminalOutput');
+            if (terminal) {
+                terminal.textContent = `Arduino Mega 2560 - WITCH Controller v2.1
+> System initialized
+> All motors homed
+> Ready for commands...`;
+            }
+        }
+
+        // Enhanced witch functions with terminal logging
+        function activateWitch() {
+            showCodeDisplay('// WITCH ACTIVATION SEQUENCE\nM117 "Awakening the witch..."\nG28 ; Home position\nG1 X50 F1500 ; Turn head slowly\nM106 S255 ; Glowing eyes\nG4 P2000 ; Dramatic pause\nM300 S330 P500 ; Witch cackle');
+            
+            logToTerminal('> WITCH_ACTIVATE command received');
+            logToTerminal('> G28 - Homing all axes...');
+            
+            // Simulate hardware activation sequence
+            updateHardwareStatus('headMotor', 'HOMING', 'active');
+            updateHardwareStatus('headPosition', '0°');
+            
+            setTimeout(() => {
+                logToTerminal('> G1 X50 F1500 - Moving head to 50°');
+                logToTerminal('> M106 S255 - Eyes at 100% brightness');
+                updateHardwareStatus('headMotor', 'MOVING', 'active');
+                updateHardwareStatus('headPosition', '50°');
+                updateHardwareStatus('eyeLeds', 'GLOWING', 'active');
+                updateHardwareStatus('eyeBrightness', '100%');
+            }, 1000);
+            
+            setTimeout(() => {
+                logToTerminal('> M300 S330 P500 - Playing cackle sound');
+                updateHardwareStatus('audioSystem', 'CACKLING', 'active');
+                updateHardwareStatus('audioLevel', '85%');
+            }, 2500);
+            
+            setTimeout(() => {
+                logToTerminal('> Sequence complete - WITCH ACTIVE');
+                updateHardwareStatus('headMotor', 'IDLE');
+                updateHardwareStatus('audioSystem', 'SILENT');
+                updateHardwareStatus('audioLevel', '0%');
+            }, 4000);
         }
 
         // Fog machine functions
