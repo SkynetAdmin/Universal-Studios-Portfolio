@@ -79,6 +79,22 @@ Beyond my professional qualifications, I bring genuine passion for the horror ge
 
 After completing rehabilitation from a recent injury, I am fully prepared and energized to contribute to Universal Horror Unleashed's success. I understand the demanding nature of this role and am committed to providing the reliable, innovative leadership your technology operations require.
 
+**Live Technology Portfolio Demonstration:**
+
+To demonstrate my technical capabilities and passion for Universal Horror Unleashed, I have created an interactive technology portfolio specifically showcasing the automation and management systems relevant to your operations:
+
+**🌐 Portfolio Website:** https://skynetadmin.github.io/Universal-Studios-Portfolio/website/  
+**📁 Professional Certifications:** https://skynetadmin.github.io/Universal-Studios-Portfolio/certificates/
+
+**Portfolio Highlights:**
+- **Executive Management Dashboard**: Real-time operational oversight with KPIs, team management, and guest satisfaction tracking
+- **Animatronic Control Systems**: Arduino and G-Code programming demonstrations for mechanical automation
+- **Fog Machine Choreography**: DMX512 protocol control with multi-zone deployment and RGB lighting coordination
+- **Safety Control Systems**: Traffic light automation with emergency protocols and industrial PLC integration
+- **Python Automation Framework**: Docker orchestration, serial communication, and system monitoring capabilities
+
+This interactive portfolio demonstrates my ability to design, implement, and manage the exact types of technology systems that power Universal Horror Unleashed's immersive experiences. Every system includes professional automation codes, real-time monitoring, and executive-level operational dashboards.
+
 I would welcome the opportunity to discuss how my experience managing critical technology infrastructure can support the terrifyingly unique experience that Universal Horror Unleashed delivers to guests year-round. Thank you for considering my application.
 
 Sincerely,
@@ -87,4 +103,4 @@ Sincerely,
 
 ---
 
-*Attachment: Resume*
+*Attachments: Resume, Technical Portfolio, Live Website Demonstration*

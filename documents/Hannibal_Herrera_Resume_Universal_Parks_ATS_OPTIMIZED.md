@@ -212,6 +212,33 @@ Technology Operations Manager with 5+ years experience managing software and har
 
 ---
 
+## PORTFOLIO & CERTIFICATIONS
+
+**🌐 Interactive Technology Portfolio**  
+**Website:** https://skynetadmin.github.io/Universal-Studios-Portfolio/website/  
+**GitHub:** https://github.com/SkynetAdmin/Universal-Studios-Portfolio
+
+*Universal Horror Unleashed Technology Operations Manager Portfolio*
+- **Management Dashboard**: Executive-level operations oversight with KPIs and team management
+- **Animatronic Control**: Arduino Mega 2560 + RAMPS 1.4 with G-Code programming demonstrations
+- **Fog Machine Choreography**: DMX512 protocol with CHAUVET Hurricane 1000 control systems
+- **Traffic Light Safety Systems**: GPIO and Modbus RTU integration with emergency protocols
+- **Python Automation Scripts**: Serial communication, Raspberry Pi clusters, Docker deployment
+- **Real-time Monitoring**: Hardware status grids with live terminal logging and professional automation codes
+- **Professional Standards**: Industry-grade hardware specifications and automation protocols
+
+**📜 Professional Certifications** *(Available for Review)*
+- **Cornell University**: Business Management Certificate (2023)
+- **Google**: IT Support Professional Certificate
+- **Johns Hopkins University**: COVID-19 Contact Tracing Certificate
+- **Military Training Certifications**: Emergency Response, Medical Training, Counter-Terrorism
+- **Cybersecurity**: HackerOne Bug Bounty Platform (Active researcher)
+
+**📁 Certificate Access:** All certification documents available at:  
+https://skynetadmin.github.io/Universal-Studios-Portfolio/certificates/
+
+---
+
 ## CONTACT INFORMATION
 
 **Hannibal Herrera** (Legal name: Jose, recently changed)  
