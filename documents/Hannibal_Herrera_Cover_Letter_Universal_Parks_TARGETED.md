@@ -3,7 +3,7 @@
 
 ---
 
-**[Date]**
+**July 20, 2025**
 
 **Universal Destinations & Experiences**  
 **Hiring Manager - Technology Operations**  
@@ -100,7 +100,3 @@ I would welcome the opportunity to discuss how my experience managing critical t
 Sincerely,
 
 **Hannibal Herrera**
-
----
-
-*Attachments: Resume, Technical Portfolio, Live Website Demonstration*
