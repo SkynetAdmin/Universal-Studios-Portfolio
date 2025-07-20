@@ -1333,31 +1333,24 @@
             }
         }
 
-        // Animatronic functions
-        function activateWitch() {
-            showCodeDisplay('// WITCH ACTIVATION SEQUENCE\nM117 "Awakening the witch..."\nG28 ; Home position\nG1 X50 F1500 ; Turn head slowly\nM106 S255 ; Glowing eyes\nG4 P2000 ; Dramatic pause\nM300 S330 P500 ; Witch cackle');
-            
-            // Simulate hardware activation sequence
-            updateHardwareStatus('headMotor', 'HOMING', 'active');
-            updateHardwareStatus('headPosition', '0°');
-            
-            setTimeout(() => {
-                updateHardwareStatus('headMotor', 'MOVING', 'active');
-                updateHardwareStatus('headPosition', '50°');
-                updateHardwareStatus('eyeLeds', 'GLOWING', 'active');
-                updateHardwareStatus('eyeBrightness', '100%');
-            }, 1000);
-            
-            setTimeout(() => {
-                updateHardwareStatus('audioSystem', 'CACKLING', 'active');
-                updateHardwareStatus('audioLevel', '85%');
-            }, 2500);
-            
-            setTimeout(() => {
-                updateHardwareStatus('headMotor', 'IDLE');
-                updateHardwareStatus('audioSystem', 'SILENT');
-                updateHardwareStatus('audioLevel', '0%');
-            }, 4000);
+        // Terminal logging functions
+        function logToTerminal(message) {
+            const terminal = document.getElementById('terminalOutput');
+            if (terminal) {
+                const timestamp = new Date().toLocaleTimeString();
+                terminal.textContent += `\n[${timestamp}] ${message}`;
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        }
+
+        function clearTerminal() {
+            const terminal = document.getElementById('terminalOutput');
+            if (terminal) {
+                terminal.textContent = `Arduino Mega 2560 - WITCH Controller v2.1
+> System initialized
+> All motors homed
+> Ready for commands...`;
+            }
         }
 
         function witchScream() {
