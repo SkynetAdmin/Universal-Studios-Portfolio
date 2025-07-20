@@ -999,18 +999,35 @@
             
             showCodeDisplay('Starting automated sequence...\nM117 "Horror Traffic Control Active"\n; Red-Yellow-Green-Green-Yellow-Red pattern\n; Starting immediately...');
             
-            // Start immediately (no delay)
+            let step = 0;
+            
+            // Start immediately with red
             activateLight('red');
             
             currentSequence = setInterval(() => {
-                // Full cycle: Red → Yellow → Green → Green → Yellow → Red
-                activateLight('red');
-                setTimeout(() => activateLight('yellow'), 1000);  // Red for 1 sec
-                setTimeout(() => activateLight('green'), 2000);   // Yellow for 1 sec
-                setTimeout(() => activateLight('green'), 3000);   // Green for 1 sec (stay green)
-                setTimeout(() => activateLight('yellow'), 4000);  // Green for another 1 sec
-                setTimeout(() => activateLight('red'), 5000);     // Yellow for 1 sec, back to red
-            }, 6000); // Complete cycle every 6 seconds
+                switch(step) {
+                    case 0: // Red
+                        activateLight('red');
+                        break;
+                    case 1: // Yellow
+                        activateLight('yellow');
+                        break;
+                    case 2: // Green (first time)
+                        activateLight('green');
+                        break;
+                    case 3: // Green (second time)
+                        activateLight('green');
+                        break;
+                    case 4: // Yellow (going back)
+                        activateLight('yellow');
+                        break;
+                    case 5: // Red (back to start)
+                        activateLight('red');
+                        step = -1; // Will become 0 after increment
+                        break;
+                }
+                step++;
+            }, 1000); // Change every 1 second
         }
 
         function stopSequence() {
