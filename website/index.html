@@ -400,6 +400,84 @@
             left: 0;
         }
 
+        /* Hardware Status Panel */
+        .hardware-status-panel {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--neon-green);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .hardware-status-panel h5 {
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .status-item {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            border-radius: 5px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .status-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .status-indicator {
+            color: var(--neon-green);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--neon-green);
+        }
+
+        .status-indicator.active {
+            background: var(--neon-green);
+            color: var(--horror-black);
+            animation: statusPulse 0.5s ease-in-out;
+        }
+
+        .status-indicator.warning {
+            background: #ffaa00;
+            color: var(--horror-black);
+            border-color: #ffaa00;
+        }
+
+        .status-indicator.error {
+            background: #ff0000;
+            color: white;
+            border-color: #ff0000;
+        }
+
+        .status-value {
+            color: var(--ghost-white);
+            font-size: 0.9rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        @keyframes statusPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         /* Fog Machine Animation */
         .fog-demo {
             display: flex;
@@ -841,6 +919,44 @@
             <div class="demo-card">
                 <h4>👹 Animatronic Witch Controller</h4>
                 <p>Commercial shelf hardware + G-Code = Terrifying results!</p>
+                
+                <!-- Hardware Status Display -->
+                <div class="hardware-status-panel">
+                    <h5>🔧 Hardware Status Monitor</h5>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <div class="status-label">Head Motor (X)</div>
+                            <div class="status-indicator" id="headMotor">IDLE</div>
+                            <div class="status-value" id="headPosition">0°</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Arm Motors (Y)</div>
+                            <div class="status-indicator" id="armMotors">IDLE</div>
+                            <div class="status-value" id="armPosition">0°</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Jaw Servo</div>
+                            <div class="status-indicator" id="jawServo">CLOSED</div>
+                            <div class="status-value" id="jawPosition">0%</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Eye LEDs</div>
+                            <div class="status-indicator" id="eyeLeds">OFF</div>
+                            <div class="status-value" id="eyeBrightness">0%</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Audio System</div>
+                            <div class="status-indicator" id="audioSystem">SILENT</div>
+                            <div class="status-value" id="audioLevel">0%</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Motion Sensor</div>
+                            <div class="status-indicator" id="motionSensor">READY</div>
+                            <div class="status-value" id="sensorRange">3m</div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="demo-controls">
                     <button onclick="activateWitch()">🔮 Activate Witch</button>
                     <button onclick="witchScream()">😱 Scream Sequence</button>
@@ -1122,18 +1238,134 @@
         // Animatronic functions
         function activateWitch() {
             showCodeDisplay('// WITCH ACTIVATION SEQUENCE\nM117 "Awakening the witch..."\nG28 ; Home position\nG1 X50 F1500 ; Turn head slowly\nM106 S255 ; Glowing eyes\nG4 P2000 ; Dramatic pause\nM300 S330 P500 ; Witch cackle');
+            
+            // Simulate hardware activation sequence
+            updateHardwareStatus('headMotor', 'HOMING', 'active');
+            updateHardwareStatus('headPosition', '0°');
+            
+            setTimeout(() => {
+                updateHardwareStatus('headMotor', 'MOVING', 'active');
+                updateHardwareStatus('headPosition', '50°');
+                updateHardwareStatus('eyeLeds', 'GLOWING', 'active');
+                updateHardwareStatus('eyeBrightness', '100%');
+            }, 1000);
+            
+            setTimeout(() => {
+                updateHardwareStatus('audioSystem', 'CACKLING', 'active');
+                updateHardwareStatus('audioLevel', '85%');
+            }, 2500);
+            
+            setTimeout(() => {
+                updateHardwareStatus('headMotor', 'IDLE');
+                updateHardwareStatus('audioSystem', 'SILENT');
+                updateHardwareStatus('audioLevel', '0%');
+            }, 4000);
         }
 
         function witchScream() {
             showCodeDisplay('// WITCH SCREAM SEQUENCE\nM117 "SCREAM ACTIVATED"\nG1 Y20 F3000 ; Open jaw fast\nM300 S440 P2000 ; Blood-curdling scream\nG1 Y0 F500 ; Close jaw slowly\nM106 S0 ; Dim eyes\nG4 P1000 ; Silence...');
+            
+            // Simulate scream sequence
+            updateHardwareStatus('jawServo', 'OPENING', 'warning');
+            updateHardwareStatus('jawPosition', '100%');
+            updateHardwareStatus('audioSystem', 'SCREAMING', 'error');
+            updateHardwareStatus('audioLevel', '100%');
+            
+            setTimeout(() => {
+                updateHardwareStatus('jawServo', 'CLOSING', 'active');
+                updateHardwareStatus('jawPosition', '0%');
+                updateHardwareStatus('eyeLeds', 'DIMMING', 'warning');
+                updateHardwareStatus('eyeBrightness', '20%');
+            }, 2000);
+            
+            setTimeout(() => {
+                updateHardwareStatus('jawServo', 'CLOSED');
+                updateHardwareStatus('audioSystem', 'SILENT');
+                updateHardwareStatus('audioLevel', '0%');
+                updateHardwareStatus('eyeLeds', 'OFF');
+                updateHardwareStatus('eyeBrightness', '0%');
+            }, 3500);
         }
 
         function witchDance() {
             showCodeDisplay('// WITCH HORROR DANCE\nM117 "Dance of terror"\nG1 X30 Y10 F2000 ; Arm swing\nG1 X-30 Y-10 F2000 ; Other arm\nG1 Z10 F1000 ; Head bob\nG1 Z0 F1000 ; Return\n; Repeat pattern 3 times');
+            
+            // Simulate dance sequence
+            let danceStep = 0;
+            const danceInterval = setInterval(() => {
+                switch(danceStep % 4) {
+                    case 0:
+                        updateHardwareStatus('armMotors', 'SWING RIGHT', 'active');
+                        updateHardwareStatus('armPosition', '30°');
+                        updateHardwareStatus('headMotor', 'BOB UP', 'active');
+                        updateHardwareStatus('headPosition', '10°');
+                        break;
+                    case 1:
+                        updateHardwareStatus('armMotors', 'SWING LEFT', 'active');
+                        updateHardwareStatus('armPosition', '-30°');
+                        break;
+                    case 2:
+                        updateHardwareStatus('headMotor', 'BOB DOWN', 'active');
+                        updateHardwareStatus('headPosition', '-10°');
+                        break;
+                    case 3:
+                        updateHardwareStatus('armMotors', 'CENTER', 'active');
+                        updateHardwareStatus('armPosition', '0°');
+                        updateHardwareStatus('headMotor', 'CENTER', 'active');
+                        updateHardwareStatus('headPosition', '0°');
+                        break;
+                }
+                danceStep++;
+                
+                if (danceStep >= 12) { // 3 full cycles
+                    clearInterval(danceInterval);
+                    setTimeout(() => {
+                        updateHardwareStatus('armMotors', 'IDLE');
+                        updateHardwareStatus('headMotor', 'IDLE');
+                    }, 500);
+                }
+            }, 800);
         }
 
         function emergencyStopWitch() {
             showCodeDisplay('// EMERGENCY STOP - WITCH\nM112 ; IMMEDIATE STOP\nM107 ; All effects OFF\nM117 "WITCH EMERGENCY STOP"\nG28 ; Return to safe position\n; System secured');
+            
+            // Emergency stop all systems
+            updateHardwareStatus('headMotor', 'E-STOP', 'error');
+            updateHardwareStatus('armMotors', 'E-STOP', 'error');
+            updateHardwareStatus('jawServo', 'E-STOP', 'error');
+            updateHardwareStatus('eyeLeds', 'OFF', 'error');
+            updateHardwareStatus('audioSystem', 'MUTED', 'error');
+            
+            setTimeout(() => {
+                updateHardwareStatus('headMotor', 'IDLE');
+                updateHardwareStatus('headPosition', '0°');
+                updateHardwareStatus('armMotors', 'IDLE');
+                updateHardwareStatus('armPosition', '0°');
+                updateHardwareStatus('jawServo', 'CLOSED');
+                updateHardwareStatus('jawPosition', '0%');
+                updateHardwareStatus('eyeLeds', 'OFF');
+                updateHardwareStatus('eyeBrightness', '0%');
+                updateHardwareStatus('audioSystem', 'SILENT');
+                updateHardwareStatus('audioLevel', '0%');
+            }, 2000);
+        }
+
+        function updateHardwareStatus(elementId, status, statusClass = '') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                if (elementId.includes('Position') || elementId.includes('Brightness') || elementId.includes('Level') || elementId.includes('Range')) {
+                    // This is a value field
+                    element.textContent = status;
+                } else {
+                    // This is a status indicator
+                    element.textContent = status;
+                    element.className = 'status-indicator';
+                    if (statusClass) {
+                        element.classList.add(statusClass);
+                    }
+                }
+            }
         }
 
         // Fog machine functions
