@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hannibal Herrera - Technology Operations Manager | Universal Horror Unleashed</title>
+    <meta name="description" content="Professional portfolio of Hannibal Herrera - Technology Operations Manager candidate for Universal Horror Unleashed. 14 years military experience, Docker expertise, automation specialist.">
+    <meta name="keywords" content="technology operations, universal studios, horror, automation, docker, military leadership, las vegas, emergency response">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6600;
+            --secondary-color: #00ff00;
+            --accent-color: #8b0000;
+            --dark-bg: #1a1a1a;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient-bg: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 50%, #000000 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--gradient-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background: rgba(255, 102, 0, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid var(--primary-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 20px var(--primary-color);
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px var(--primary-color); }
+            to { text-shadow: 0 0 30px var(--primary-color), 0 0 40px var(--primary-color); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        .btn-secondary {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: var(--dark-bg);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        .skill-list li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Experience Cards */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .experience-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary-color);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-title {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .experience-duration {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .experience-company {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: var(--text-light);
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .experience-highlights {
+            margin-top: 1rem;
+            list-style: none;
+        }
+
+        .experience-highlights li {
+            color: var(--text-light);
+            padding: 0.3rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .experience-highlights li::before {
+            content: '▶';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Demo Section */
+        .demo-container {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .traffic-light-container {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .traffic-light {
+            background: #333;
+            border: 3px solid #666;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 10px;
+            border: 3px solid #666;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .red { background: #330000; }
+        .yellow { background: #333300; }
+        .green { background: #003300; }
+
+        .red.active { 
+            background: #ff0000; 
+            box-shadow: 0 0 30px #ff0000;
+            animation: pulse 1s infinite;
+        }
+        .yellow.active { 
+            background: #ffff00; 
+            box-shadow: 0 0 30px #ffff00;
+            animation: pulse 1s infinite;
+        }
+        .green.active { 
+            background: #00ff00; 
+            box-shadow: 0 0 30px #00ff00;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .control-panel {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: linear-gradient(45deg, var(--primary-color), #ff3300);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+        }
+
+        .code-display {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            color: var(--secondary-color);
+            text-align: left;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 2px solid var(--primary-color);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Horror Mode Styles */
+        .horror-mode {
+            filter: hue-rotate(180deg) contrast(1.2);
+            animation: flicker 0.1s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">Hannibal Herrera</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Hannibal Herrera</h1>
+        <div class="hero-subtitle">Technology Operations Manager</div>
+        <div class="hero-description">
+            14-Year Military Veteran • Docker Expert • Automation Specialist • Emergency Response Leader<br>
+            Ready to bring operational excellence to Universal Horror Unleashed
+        </div>
+        
+        <div class="cta-buttons">
+            <a href="#demo" class="btn">
+                <i class="fas fa-play"></i> View Live Demo
+            </a>
+            <a href="mailto:herrera.hannibal84@gmail.com" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i> Contact Me
+            </a>
+            <a href="../documents/Hannibal_Herrera_Resume_Universal_Parks_ATS_OPTIMIZED.md" class="btn" target="_blank">
+                <i class="fas fa-download"></i> Download Resume
+            </a>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>702-626-7678</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>herrera.hannibal84@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Las Vegas, NV</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2>Technical Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fas fa-server"></i>
+                <h3>Infrastructure & Operations</h3>
+                <ul class="skill-list">
+                    <li>24/7/365 Operations Management</li>
+                    <li>Docker Containers & Orchestration</li>
+                    <li>Network Infrastructure</li>
+                    <li>System Monitoring & Alerts</li>
+                    <li>Emergency Response Protocols</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i class="fas fa-users"></i>
+                <h3>Leadership & Management</h3>
+                <ul class="skill-list">
+                    <li>Team Leadership (14 Years Military)</li>
+                    <li>Crisis Management</li>
+                    <li>Training & Development</li>
+                    <li>Cornell Business Management</li>
+                    <li>Cross-functional Collaboration</li>
+                </ul>
+            </div>
+            
+            <div class="skill-card">
+                <i class="fas fa-robot"></i>
+                <h3>Automation & Special Effects</h3>
+                <ul class="skill-list">
+                    <li>G-Code Programming</li>
+                    <li>Robotics & Automation</li>
+                    <li>POS Systems Integration</li>
+                    <li>Troubleshooting & Diagnostics</li>
+                    <li>Special Effects Technology</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Security & Compliance</h3>
+                <ul class="skill-list">
+                    <li>Cybersecurity (Bug Bounty Hunter)</li>
+                    <li>Google IT Certifications</li>
+                    <li>Emergency Protocols</li>
+                    <li>Risk Assessment</li>
+                    <li>Incident Response</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <h2>Professional Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="experience-title">Military Operations Leader</div>
+                    <div class="experience-duration">14 Years</div>
+                </div>
+                <div class="experience-company">U.S. Military • Downed Aircraft Recovery Team (Iraq)</div>
+                <div class="experience-description">
+                    Led critical operations in high-stress environments, specializing in emergency response and equipment recovery. Managed teams in 24/7/365 operations with zero tolerance for failure.
+                </div>
+                <ul class="experience-highlights">
+                    <li>Led emergency response teams in combat zones</li>
+                    <li>Managed complex technical equipment under pressure</li>
+                    <li>Trained personnel in crisis management protocols</li>
+                    <li>Maintained 100% mission success rate</li>
+                    <li>Coordinated multi-team operations across time zones</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="experience-title">Technology Operations Specialist</div>
+                    <div class="experience-duration">Current</div>
+                </div>
+                <div class="experience-company">Independent Contractor • Las Vegas, NV</div>
+                <div class="experience-description">
+                    Specialized in automation systems, Docker containerization, and emergency response protocols. Focus on entertainment and hospitality technology operations.
+                </div>
+                <ul class="experience-highlights">
+                    <li>Docker container deployment and management</li>
+                    <li>Automation system programming (G-Code)</li>
+                    <li>Network troubleshooting and optimization</li>
+                    <li>POS system integration and maintenance</li>
+                    <li>Cybersecurity assessment and bug bounty</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="experience-title">Business Management Graduate</div>
+                    <div class="experience-duration">2023</div>
+                </div>
+                <div class="experience-company">Cornell University</div>
+                <div class="experience-description">
+                    Completed comprehensive business management program with focus on operations, leadership, and strategic planning. Specialized in technology operations and crisis management.
+                </div>
+                <ul class="experience-highlights">
+                    <li>Operations Management & Strategy</li>
+                    <li>Team Leadership & Development</li>
+                    <li>Crisis Management & Response</li>
+                    <li>Technology Integration</li>
+                    <li>Performance Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="section">
+        <h2>Live Automation Demo</h2>
+        <div class="demo-container">
+            <h3>Traffic Light Automation System</h3>
+            <p>This interactive demonstration showcases real-time automation control - the kind of precision required for Universal Horror Unleashed's special effects and safety systems.</p>
+            
+            <div class="traffic-light-container">
+                <div class="traffic-light">
+                    <div class="light red" id="redLight"></div>
+                    <div class="light yellow" id="yellowLight"></div>
+                    <div class="light green" id="greenLight"></div>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <h4>Control Panel</h4>
+                <div class="buttons">
+                    <button onclick="activateLight('red')">Emergency Stop</button>
+                    <button onclick="activateLight('yellow')">Scene Transition</button>
+                    <button onclick="activateLight('green')">Horror Unleashed</button>
+                    <button onclick="startSequence()">Auto Sequence</button>
+                    <button onclick="stopSequence()">Stop</button>
+                    <button onclick="toggleHorrorMode()">Horror Mode</button>
+                </div>
+                
+                <div class="code-display" id="codeDisplay">
+// Ready to demonstrate automation control...
+// Click any button above to see real-time code execution
+
+/* This system demonstrates:
+   - Real-time control capabilities
+   - Emergency stop protocols
+   - Automated sequencing
+   - Cross-platform compatibility
+   - Perfect for UHU special effects! */
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Ready to Join Universal Horror Unleashed</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+                I'm ready to bring 14 years of military leadership, technical expertise, and genuine horror passion to Area 15. 
+                Let's discuss how I can help Universal Horror Unleashed deliver unforgettable experiences through operational excellence.
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="mailto:herrera.hannibal84@gmail.com?subject=Universal Horror Unleashed - Technology Operations Manager Position" class="btn">
+                    <i class="fas fa-envelope"></i> Send Email
+                </a>
+                <a href="tel:702-626-7678" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Call Now
+                </a>
+            </div>
+
+            <div class="contact-info" style="margin-top: 2rem;">
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Available Immediately</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Horror Enthusiast (Married on Halloween!)</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-certificate"></i>
+                    <span>Google IT Certified</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="../documents/Hannibal_Herrera_Resume_Universal_Parks_ATS_OPTIMIZED.md" target="_blank">Resume</a>
+                <a href="../documents/Hannibal_Herrera_Cover_Letter_Universal_Parks_TARGETED.md" target="_blank">Cover Letter</a>
+                <a href="../documents/Hannibal_Herrera_Portfolio_Universal_Parks.md" target="_blank">Portfolio Document</a>
+                <a href="mailto:herrera.hannibal84@gmail.com">Contact</a>
+            </div>
+            <p>&copy; 2025 Hannibal Herrera. Ready to unleash horror at Universal!</p>
+            <p style="opacity: 0.7; margin-top: 1rem;">
+                <i class="fas fa-skull"></i> 
+                This portfolio demonstrates the technical precision and attention to detail required for Universal Horror Unleashed's 24/7/365 operations.
+            </p>
+        </div>
+    </footer>
+
+    <script src="portfolio.js"></script>
+</body>
+</html>
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 102, 0, 0.5);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .code-display {
+            background: #000;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            text-align: left;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .status-display {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff6600;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            color: #ff6600;
+            font-size: 1.3rem;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .platform-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: #333;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: #00ff00;
+            color: #000;
+        }
+
+        .horror-section {
+            background: rgba(139, 0, 0, 0.1);
+            border: 2px solid #8b0000;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .horror-title {
+            color: #8b0000;
+            font-size: 2.5rem;
+            text-shadow: 0 0 20px #8b0000;
+            margin-bottom: 1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 0 2rem;
+        }
+
+        .skill-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
+        }
+
+        .contact-section {
+            background: rgba(255, 102, 0, 0.1);
+            border: 2px solid #ff6600;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-code {
+            position: absolute;
+            color: rgba(0, 255, 0, 0.1);
+            font-family: 'Courier New', monospace;
+            animation: float 10s infinite linear;
+            font-size: 0.8rem;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .emergency-button {
+            background: linear-gradient(45deg, #ff0000, #8b0000) !important;
+            animation: emergency-blink 1s infinite;
+        }
+
+        @keyframes emergency-blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.5; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .buttons { flex-direction: column; align-items: center; }
+            .traffic-light-container { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="hero">
+        <h1>HANNIBAL HERRERA</h1>
+        <p class="subtitle">Interactive Technology Portfolio</p>
+        <p style="color: #ff6600; font-size: 1.2rem;">Technology Operations Manager - Universal Horror Unleashed</p>
+        <p style="color: #00ff00;">🎖️ Military Veteran | 🤖 Automation Expert | 🎃 Horror Enthusiast</p>
+    </div>
+
+    <div class="control-panel">
+        <h2 style="color: #ff6600; margin-bottom: 1rem;">🚦 INTERACTIVE TRAFFIC LIGHT CONTROLLER</h2>
+        <p style="margin-bottom: 2rem;">Demonstrating automation skills perfect for Universal Horror Unleashed special effects!</p>
+        
+        <div class="traffic-light-container">
+            <div class="traffic-light">
+                <h3 style="color: #ff6600; margin-bottom: 1rem;">EMERGENCY STOP</h3>
+                <div class="light red" id="redLight"></div>
+                <div class="light yellow" id="yellowLight"></div>
+                <div class="light green" id="greenLight"></div>
+            </div>
+        </div>
+
+        <div class="status-display" id="statusDisplay">
+            🚦 Ready to demonstrate automation skills...
+        </div>
+
+        <div class="buttons">
+            <button onclick="emergencyStop()" class="emergency-button">🚨 EMERGENCY STOP</button>
+            <button onclick="startSequence()">▶️ START SEQUENCE</button>
+            <button onclick="manualRed()">🔴 RED LIGHT</button>
+            <button onclick="manualYellow()">🟡 YELLOW LIGHT</button>
+            <button onclick="manualGreen()">🟢 GREEN LIGHT</button>
+            <button onclick="horrorMode()">🎃 HORROR MODE</button>
+        </div>
+
+        <div class="platform-tabs">
+            <div class="tab active" onclick="showCode('gcode')">G-Code</div>
+            <div class="tab" onclick="showCode('windows')">Windows</div>
+            <div class="tab" onclick="showCode('macos')">macOS</div>
+            <div class="tab" onclick="showCode('linux')">Linux</div>
+            <div class="tab" onclick="showCode('horror')">Horror Effects</div>
+        </div>
+
+        <div class="code-display" id="codeDisplay">
+; G-Code Traffic Light Controller
+; Perfect for UHU Special Effects!
+
+M117 "System Initializing..."
+G28 ; Home all positions
+M106 S0 ; All lights off
+
+; Ready for commands...
+        </div>
+    </div>
+
+    <div class="horror-section">
+        <h2 class="horror-title">🎃 UNIVERSAL HORROR UNLEASHED APPLICATIONS</h2>
+        <p style="color: #8b0000; font-size: 1.3rem; margin-bottom: 2rem;">
+            This traffic light controller demonstrates EXACTLY the skills needed for UHU special effects:
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
+            <div style="background: rgba(139, 0, 0, 0.2); padding: 1rem; border-radius: 10px;">
+                <h3 style="color: #ff6600;">🎭 Animatronics</h3>
+                <p>G-code controls creature movements</p>
+            </div>
+            <div style="background: rgba(139, 0, 0, 0.2); padding: 1rem; border-radius: 10px;">
+                <h3 style="color: #ff6600;">💡 Lighting</h3>
+                <p>Automated strobe & mood effects</p>
+            </div>
+            <div style="background: rgba(139, 0, 0, 0.2); padding: 1rem; border-radius: 10px;">
+                <h3 style="color: #ff6600;">🌫️ Fog Machines</h3>
+                <p>Timed atmospheric effects</p>
+            </div>
+            <div style="background: rgba(139, 0, 0, 0.2); padding: 1rem; border-radius: 10px;">
+                <h3 style="color: #ff6600;">🚨 Safety</h3>
+                <p>Emergency stop protocols</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="skills-grid">
+        <div class="skill-card">
+            <h3 style="color: #ff6600;">🎖️ Military Experience</h3>
+            <p>14 Years Service</p>
+            <p>6 Downed Aircraft Recovery Missions (Iraq)</p>
+            <p>Trained hundreds of personnel</p>
+            <p>Crisis management expert</p>
+        </div>
+        
+        <div class="skill-card">
+            <h3 style="color: #ff6600;">💻 Cross-Platform Expert</h3>
+            <p>Windows, macOS, Linux</p>
+            <p>Docker containerization</p>
+            <p>Network & Wi-Fi troubleshooting</p>
+            <p>24/7/365 operations</p>
+        </div>
+        
+        <div class="skill-card">
+            <h3 style="color: #ff6600;">🤖 Automation & Robotics</h3>
+            <p>G-code/M-code programming</p>
+            <p>3D printing technology</p>
+            <p>Arduino & Raspberry Pi</p>
+            <p>Real-time control systems</p>
+        </div>
+        
+        <div class="skill-card">
+            <h3 style="color: #ff6600;">🎃 Horror Culture Passion</h3>
+            <p>Married on Halloween</p>
+            <p>Traveled to Derry, Ireland</p>
+            <p>Authentic horror enthusiasm</p>
+            <p>Guest experience understanding</p>
+        </div>
+        
+        <div class="skill-card">
+            <h3 style="color: #ff6600;">🗣️ Multilingual</h3>
+            <p>English (Native)</p>
+            <p>Spanish (Moderate)</p>
+            <p>ASL Level 2</p>
+            <p>Perfect for Las Vegas diversity</p>
+        </div>
+        
+        <div class="skill-card">
+            <h3 style="color: #ff6600;">📍 Local Advantage</h3>
+            <p>Las Vegas Resident</p>
+            <p>5.5 miles from Area 15</p>
+            <p>Complete availability</p>
+            <p>Reliable transportation</p>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <h2 style="color: #ff6600; margin-bottom: 1rem;">📞 READY TO ROCK AT UNIVERSAL HORROR UNLEASHED!</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 1rem;">
+            <strong>Hannibal Herrera</strong><br>
+            📧 herrera.hannibal84@gmail.com<br>
+            📱 702-626-7678<br>
+            📍 Las Vegas, NV (5.5 miles from Area 15)
+        </p>
+        <p style="color: #00ff00; font-size: 1.1rem;">
+            🎢 Ready to bring military-grade crisis management, cutting-edge automation skills, 
+            and authentic horror passion to Universal Horror Unleashed's technology operations! 👻⚡
+        </p>
+    </div>
+
+    <script src="portfolio.js"></script>
+</body>
+</html>
