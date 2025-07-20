@@ -1829,6 +1829,44 @@
             <div class="demo-card">
                 <h4>🐍 Python Automation Scripts</h4>
                 <p>Real-world automation for Universal's diverse hardware ecosystem</p>
+                
+                <!-- Python System Status Panel -->
+                <div class="hardware-status-panel">
+                    <h5>🐍 Python Environment Status Monitor</h5>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <div class="status-label">Python Runtime</div>
+                            <div class="status-indicator" id="pythonRuntime">ACTIVE</div>
+                            <div class="status-value" id="pythonVersion">3.11.0</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Virtual Environment</div>
+                            <div class="status-indicator" id="venvStatus">LOADED</div>
+                            <div class="status-value" id="venvName">universal_ops</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Docker Engine</div>
+                            <div class="status-indicator" id="dockerEngine">RUNNING</div>
+                            <div class="status-value" id="dockerContainers">34 Active</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Serial Ports</div>
+                            <div class="status-indicator" id="serialPorts">DETECTED</div>
+                            <div class="status-value" id="serialCount">5 Devices</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Network APIs</div>
+                            <div class="status-indicator" id="networkAPIs">CONNECTED</div>
+                            <div class="status-value" id="apiLatency">12ms</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Memory Usage</div>
+                            <div class="status-indicator" id="memoryStatus">OPTIMAL</div>
+                            <div class="status-value" id="memoryPercent">23%</div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="demo-controls">
                     <button onclick="showPythonDemo('serial')">📡 Serial Control</button>
                     <button onclick="showPythonDemo('raspberry')">🥧 Raspberry Pi</button>
@@ -1836,20 +1874,47 @@
                     <button onclick="showPythonDemo('monitoring')">📊 System Monitor</button>
                 </div>
                 
-                <!-- Python Terminal Display -->
-                <div class="hardware-terminal">
-                    <div class="terminal-header">
-                        <span class="terminal-title">🐍 Python Automation Terminal</span>
-                        <div class="terminal-controls">
-                            <span class="terminal-status" id="pythonTerminalStatus">READY</span>
-                            <button class="terminal-clear" onclick="clearPythonTerminal()">Clear</button>
+                <!-- Python Specs and Terminal Side by Side -->
+                <div class="hardware-bottom-section">
+                    <div class="hardware-specs">
+                        <h5>Python Automation Stack:</h5>
+                        <ul>
+                            <li>Python 3.11.0 (Universal Automation Framework)</li>
+                            <li>PySerial (Serial Device Communication)</li>
+                            <li>RPi.GPIO (Raspberry Pi Integration)</li>
+                            <li>Docker SDK (Container Orchestration)</li>
+                            <li>Requests (API Communication)</li>
+                            <li>Psutil (System Performance Monitoring)</li>
+                            <li>Numpy (Data Processing & Analysis)</li>
+                            <li>Asyncio (Concurrent Operations)</li>
+                            <li>Modbus-tk (Industrial Protocol Support)</li>
+                            <li>OpenCV (Computer Vision & Safety)</li>
+                        </ul>
+                        
+                        <div class="connection-info">
+                            <h6>Automation Environment:</h6>
+                            <p><strong>Virtual Env:</strong> universal_ops (isolated dependencies)</p>
+                            <p><strong>Docker Network:</strong> horror-network bridge</p>
+                            <p><strong>Serial Ports:</strong> COM1-5, /dev/ttyUSB0-4</p>
+                            <p><strong>API Endpoints:</strong> REST + WebSocket integration</p>
                         </div>
                     </div>
-                    <div class="terminal-output" id="pythonTerminalOutput">Python 3.11.0 - Universal Automation Framework
+                    
+                    <!-- Python Terminal Display -->
+                    <div class="hardware-terminal">
+                        <div class="terminal-header">
+                            <span class="terminal-title">🐍 Python Automation Terminal</span>
+                            <div class="terminal-controls">
+                                <span class="terminal-status" id="pythonTerminalStatus">READY</span>
+                                <button class="terminal-clear" onclick="clearPythonTerminal()">Clear</button>
+                            </div>
+                        </div>
+                        <div class="terminal-output" id="pythonTerminalOutput">Python 3.11.0 - Universal Automation Framework
 > Virtual environment: universal_ops
 > Docker engine: Running
 > All modules loaded successfully
 > Ready for automation scripts...</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2912,33 +2977,126 @@
         function showPythonDemo(type) {
             switch(type) {
                 case 'serial':
-                    logToPythonTerminal('> Loading serial communication module...');
-                    logToPythonTerminal('> import serial, time');
-                    logToPythonTerminal('> arduino = serial.Serial("/dev/ttyUSB0", 9600)');
+                    logToPythonTerminal('> SERIAL_CONTROL module initializing...');
+                    logToPythonTerminal('> import serial, time, struct');
+                    logToPythonTerminal('> arduino = serial.Serial("/dev/ttyUSB0", 9600, timeout=1)');
+                    logToPythonTerminal('> Sending G-Code to animatronic controller...');
                     logToPythonTerminal('> arduino.write(b"G1 X10 Y10 F1000\\n")');
-                    logToPythonTerminal('> Serial command sent to animatronic controller');
+                    
+                    updatePythonStatus('serialPorts', 'ACTIVE', 'operational');
+                    updatePythonStatus('serialCount', '1 Connected');
+                    
+                    setTimeout(() => {
+                        logToPythonTerminal('> Response: b"ok\\n" - Command acknowledged');
+                        logToPythonTerminal('> arduino.write(b"M106 S200\\n")  # Fan control');
+                        logToPythonTerminal('> Serial communication established successfully');
+                    }, 1000);
+                    
+                    setTimeout(() => {
+                        updatePythonStatus('serialPorts', 'DETECTED');
+                        updatePythonStatus('serialCount', '5 Devices');
+                    }, 3000);
                     break;
+                    
                 case 'raspberry':
-                    logToPythonTerminal('> Connecting to Raspberry Pi cluster...');
-                    logToPythonTerminal('> import RPi.GPIO as GPIO');
+                    logToPythonTerminal('> RASPBERRY_PI cluster integration starting...');
+                    logToPythonTerminal('> import RPi.GPIO as GPIO, asyncio');
+                    logToPythonTerminal('> GPIO.setmode(GPIO.BCM)');
                     logToPythonTerminal('> GPIO.setup(18, GPIO.OUT)  # Fog machine trigger');
-                    logToPythonTerminal('> GPIO.output(18, GPIO.HIGH)  # Activate fog');
-                    logToPythonTerminal('> Raspberry Pi fog system activated');
+                    logToPythonTerminal('> GPIO.setup(24, GPIO.OUT)  # Strobe lighting');
+                    
+                    updatePythonStatus('networkAPIs', 'SYNCING', 'warning');
+                    updatePythonStatus('apiLatency', '45ms');
+                    
+                    setTimeout(() => {
+                        logToPythonTerminal('> async def horror_sequence():');
+                        logToPythonTerminal('>     GPIO.output(18, GPIO.HIGH)  # Fog ON');
+                        logToPythonTerminal('>     await asyncio.sleep(2)');
+                        logToPythonTerminal('>     GPIO.output(24, GPIO.HIGH)  # Strobe ON');
+                        logToPythonTerminal('> Raspberry Pi cluster synchronized');
+                    }, 1200);
+                    
+                    setTimeout(() => {
+                        updatePythonStatus('networkAPIs', 'CONNECTED', 'operational');
+                        updatePythonStatus('apiLatency', '12ms');
+                    }, 3000);
                     break;
+                    
                 case 'docker':
-                    logToPythonTerminal('> Deploying Docker containers...');
+                    logToPythonTerminal('> DOCKER deployment protocol initiated...');
+                    logToPythonTerminal('> import docker, yaml, os');
+                    logToPythonTerminal('> client = docker.from_env()');
                     logToPythonTerminal('> docker-compose up -d horror-unleashed');
-                    logToPythonTerminal('> Container "witch-controller" starting...');
-                    logToPythonTerminal('> Container "fog-manager" ready');
-                    logToPythonTerminal('> All automation services deployed');
+                    
+                    updatePythonStatus('dockerEngine', 'DEPLOYING', 'warning');
+                    updatePythonStatus('dockerContainers', '0 Starting');
+                    
+                    setTimeout(() => {
+                        logToPythonTerminal('> Container "witch-controller" - Status: Running');
+                        logToPythonTerminal('> Container "fog-manager" - Status: Ready');
+                        logToPythonTerminal('> Container "traffic-control" - Status: Online');
+                        updatePythonStatus('dockerContainers', '15 Active');
+                    }, 1500);
+                    
+                    setTimeout(() => {
+                        logToPythonTerminal('> Container "monitoring-dashboard" - Status: Ready');
+                        logToPythonTerminal('> All Universal automation services deployed');
+                        logToPythonTerminal('> Docker network: horror-network established');
+                        updatePythonStatus('dockerEngine', 'RUNNING', 'operational');
+                        updatePythonStatus('dockerContainers', '34 Active');
+                    }, 3000);
                     break;
+                    
                 case 'monitoring':
-                    logToPythonTerminal('> System monitoring active...');
-                    logToPythonTerminal('> CPU: 23% | Memory: 67% | Network: 2ms');
-                    logToPythonTerminal('> Animatronics: 47/47 online');
-                    logToPythonTerminal('> Guest satisfaction: 9.2/10');
-                    logToPythonTerminal('> All systems within normal parameters');
+                    logToPythonTerminal('> SYSTEM_MONITORING dashboard activating...');
+                    logToPythonTerminal('> import psutil, asyncio, json');
+                    logToPythonTerminal('> from universal_ops import AttractionsMonitor');
+                    
+                    updatePythonStatus('memoryStatus', 'SCANNING', 'warning');
+                    updatePythonStatus('memoryPercent', '45%');
+                    
+                    setTimeout(() => {
+                        logToPythonTerminal('> CPU Usage: 23% (8 cores) - Optimal');
+                        logToPythonTerminal('> Memory: 16GB total, 67% utilized');
+                        logToPythonTerminal('> Network I/O: 2ms latency to all systems');
+                        logToPythonTerminal('> Disk Usage: 2.4TB available, SSD arrays');
+                    }, 1000);
+                    
+                    setTimeout(() => {
+                        logToPythonTerminal('> Animatronics: 47/47 online (100% uptime)');
+                        logToPythonTerminal('> Fog Systems: 12 zones operational');
+                        logToPythonTerminal('> Traffic Control: Zone Alpha nominal');
+                        logToPythonTerminal('> Guest satisfaction: 9.2/10 (Above target)');
+                    }, 2000);
+                    
+                    setTimeout(() => {
+                        logToPythonTerminal('> Emergency systems: Armed and ready');
+                        logToPythonTerminal('> All parameters within normal ranges');
+                        logToPythonTerminal('> Universal Horror Unleashed: OPERATIONAL');
+                        updatePythonStatus('memoryStatus', 'OPTIMAL', 'operational');
+                        updatePythonStatus('memoryPercent', '23%');
+                    }, 3200);
                     break;
+            }
+        }
+
+        // Python status update functions
+        function updatePythonStatus(elementId, status, statusClass = '') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                if (elementId.includes('Version') || elementId.includes('Name') || 
+                    elementId.includes('Count') || elementId.includes('Latency') || 
+                    elementId.includes('Percent') || elementId.includes('Containers')) {
+                    // This is a value field
+                    element.textContent = status;
+                } else {
+                    // This is a status indicator
+                    element.textContent = status;
+                    element.className = 'status-indicator';
+                    if (statusClass) {
+                        element.classList.add(statusClass);
+                    }
+                }
             }
         }
 
