@@ -1556,6 +1556,7 @@
                         <div class="light green" id="greenLight"></div>
                     </div>
                 </div>
+                
                 <div class="demo-controls">
                     <button onclick="activateLight('red')">🚨 Emergency Stop</button>
                     <button onclick="activateLight('yellow')">⚡ Scene Transition</button>
@@ -1565,21 +1566,48 @@
                     <button onclick="toggleNightmareMode()" title="Crazy light flashing for 4 seconds">💀 Nightmare Mode</button>
                 </div>
                 
-                <!-- Traffic Control Terminal -->
-                <div class="hardware-terminal">
-                    <div class="terminal-header">
-                        <span class="terminal-title">🚦 Traffic Control Terminal</span>
-                        <div class="terminal-controls">
-                            <span class="terminal-status" id="trafficTerminalStatus">READY</span>
-                            <button class="terminal-clear" onclick="clearTrafficTerminal()">Clear</button>
+                <!-- Traffic Control Specs and Terminal Side by Side -->
+                <div class="hardware-bottom-section">
+                    <div class="hardware-specs">
+                        <h5>Traffic Control Stack:</h5>
+                        <ul>
+                            <li>PLC Controller (Schneider Electric M241)</li>
+                            <li>Industrial GPIO Interface Module</li>
+                            <li>24V DC Power Supply (120W)</li>
+                            <li>Modbus RTU Communication Interface</li>
+                            <li>Emergency Safety Circuit (Failsafe)</li>
+                            <li>Network Switch (Industrial Grade)</li>
+                            <li>LED Signal Arrays (Red/Yellow/Green)</li>
+                            <li>Proximity Sensors for Zone Detection</li>
+                            <li>Ethernet TCP/IP Integration</li>
+                            <li>Backup Battery System (UPS)</li>
+                        </ul>
+                        
+                        <div class="connection-info">
+                            <h6>Zone Alpha Configuration:</h6>
+                            <p><strong>GPIO Pins:</strong> 18 (Red), 19 (Yellow), 20 (Green)</p>
+                            <p><strong>Modbus Address:</strong> Unit ID 001, Baud 9600</p>
+                            <p><strong>Safety Circuit:</strong> Emergency stop &lt; 100ms</p>
+                            <p><strong>Network:</strong> 192.168.1.50/24, Port 502</p>
                         </div>
                     </div>
-                    <div class="terminal-output" id="trafficTerminalOutput">Traffic Safety Controller v4.1 - Zone Alpha
+                    
+                    <!-- Traffic Control Terminal -->
+                    <div class="hardware-terminal">
+                        <div class="terminal-header">
+                            <span class="terminal-title">🚦 Traffic Control Terminal</span>
+                            <div class="terminal-controls">
+                                <span class="terminal-status" id="trafficTerminalStatus">READY</span>
+                                <button class="terminal-clear" onclick="clearTrafficTerminal()">Clear</button>
+                            </div>
+                        </div>
+                        <div class="terminal-output" id="trafficTerminalOutput">Traffic Safety Controller v4.1 - Zone Alpha
 > GPIO pins: 18,19,20 configured
 > PLC interface: Modbus RTU active
 > Safety circuit: ARMED
 > Emergency response: < 100ms
 > Ready for traffic commands...</div>
+                    </div>
                 </div>
             </div>
 
