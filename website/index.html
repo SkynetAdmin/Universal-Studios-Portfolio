@@ -877,7 +877,7 @@
                     <button onclick="activateLight('green')">👹 Horror Unleashed</button>
                     <button onclick="startSequence()">🔄 Auto Sequence</button>
                     <button onclick="stopSequence()">⏹️ Stop</button>
-                    <button onclick="toggleNightmareMode()" title="Random crazy lights for 3 seconds">💀 Nightmare Mode</button>
+                    <button onclick="toggleNightmareMode()" title="Crazy light flashing for 4 seconds">💀 Nightmare Mode</button>
                 </div>
             </div>
 
@@ -1043,18 +1043,12 @@
                 document.getElementById('yellowLight').classList.remove('active');
                 document.getElementById('greenLight').classList.remove('active');
                 
-                // Remove screen flash
-                document.body.classList.remove('nightmare-flash');
-                
-                showCodeDisplay('💀 NIGHTMARE MODE STOPPED\nM107 ; All effects OFF\nM117 "Nightmare ended"\n; System restored to normal');
+                showCodeDisplay('💀 NIGHTMARE MODE STOPPED\nM107 ; All effects OFF\nM117 "Nightmare ended"\n; Lights restored to normal');
                 return;
             }
             
             // Start nightmare mode
-            showCodeDisplay('💀 NIGHTMARE MODE ACTIVATED!\n; Random light chaos + screen flash\nM117 "CHAOS UNLEASHED"\n; Lights going crazy for 3 seconds...');
-            
-            // Add screen flash effect
-            document.body.classList.add('nightmare-flash');
+            showCodeDisplay('💀 NIGHTMARE MODE ACTIVATED!\n; Traffic lights going CRAZY for 4 seconds\nM117 "CHAOS UNLEASHED"\n; Random light flashing sequence...');
             
             const colors = ['red', 'yellow', 'green'];
             
@@ -1070,12 +1064,12 @@
                     const randomColor = colors[Math.floor(Math.random() * colors.length)];
                     document.getElementById(randomColor + 'Light').classList.add('active');
                 }
-            }, 150); // Change every 150ms for crazy effect
+            }, 120); // Change every 120ms for crazy flashing
             
-            // Auto-stop after 3 seconds
+            // Auto-stop after 4 seconds
             nightmareTimeout = setTimeout(() => {
                 stopSequence();
-            }, 3000);
+            }, 4000);
         }
 
         function showCode(type) {
