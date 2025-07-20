@@ -331,11 +331,11 @@ M117 "System Safe - Awaiting Reset"
 
 **View All Certificates**: [https://skynetadmin.github.io/Universal-Studios-Portfolio/certificates/](https://skynetadmin.github.io/Universal-Studios-Portfolio/certificates/)
 
-✅ **Google IT Support Professional Certificate**  
-✅ **Google IT Automation with Python Certificate**  
-✅ **Google Technical Support Fundamentals**  
-✅ **Cornell Business Management Certification**  
-✅ **Professional Technology Operations Training**
+✅ **Google IT Support Professional Certificate** (Verification: B5Q9RBNG6A7F)  
+✅ **Google IT Automation with Python Certificate** (Verification: KT3ZH8U95EKP)  
+✅ **Google Technical Support Fundamentals** (Verification: N4NR9D7ABU22)  
+✅ **Google Operating Systems and You: Becoming a Power User** (Verification: NBQTPBUJXEY7)  
+✅ **Professional Technology Operations Training** (Summary Report Available)
 
 *All certificates verified and available for employer review via secure link above*
 

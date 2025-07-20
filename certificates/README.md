@@ -24,16 +24,16 @@
   - Customer service and technical communication
   - Problem-solving frameworks
 
-- **Google Operating Systems & Command Line** (Coursera: NBQTPBUJXEY7)
+- **Google Operating Systems and You: Becoming a Power User** (Coursera: NBQTPBUJXEY7)
   - Cross-platform system administration
   - Command line interface expertise
   - System monitoring and maintenance
 
-### **Professional Certification Report** 📊
+### **Professional Certification Summary** 📊
 - **Complete Verification Document** (CertificateReport.pdf)
-  - Comprehensive certification summary
+  - Comprehensive certification overview
   - Official verification and validation
-  - Professional credential overview
+  - Professional credential summary
 
 ---
 
