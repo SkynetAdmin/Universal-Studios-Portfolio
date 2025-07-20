@@ -3,85 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hannibal Herrera - Professional Portfolio</title>
+    <title>Hannibal Herrera - Technology Operations Manager</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            margin: 0;
-            padding: 0;
-            height: 100vh;
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        
+        .header .title {
+            font-size: 1.4em;
+            color: #e8f4f8;
+            margin-bottom: 15px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            color: #d0e8f2;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info {
             display: flex;
             justify-content: center;
-            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
         
-        .redirect-container {
-            text-align: center;
-            background: white;
-            padding: 40px;
+        .contact-item {
+            color: #e8f4f8;
+            font-size: 1.1em;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .nav-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         
-        .redirect-container h1 {
-            color: #1e3c72;
+        .nav-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-card .icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .nav-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .nav-card p {
+            color: #d0e8f2;
+            font-size: 1em;
             margin-bottom: 20px;
         }
         
-        .redirect-container p {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-        
-        .btn {
-            background: #1e3c72;
+        .nav-card .btn {
+            background: rgba(255, 255, 255, 0.2);
             color: white;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             text-decoration: none;
             display: inline-block;
-            font-size: 1.1em;
-            transition: background 0.3s ease;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
         
-        .btn:hover {
-            background: #2a5298;
+        .nav-card .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
         
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #1e3c72;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #d0e8f2;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .nav-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="redirect-container">
-        <h1>🎬 Hannibal Herrera</h1>
-        <p>Technology Operations Manager</p>
-        <p>Redirecting to professional documents...</p>
-        <div class="spinner"></div>
-        <a href="documents/" class="btn">Enter Portfolio</a>
+    <div class="container">
+        <div class="header">
+            <h1>Hannibal Herrera</h1>
+            <div class="title">Technology Operations Manager</div>
+            <div class="subtitle">14-Year Military Veteran • Docker Expert • Cornell Business Graduate</div>
+            
+            <div class="contact-info">
+                <div class="contact-item">📧 herrera.hannibal84@gmail.com</div>
+                <div class="contact-item">📱 702-626-7678</div>
+                <div class="contact-item">📍 Las Vegas, NV</div>
+            </div>
+        </div>
+        
+        <div class="nav-grid">
+            <div class="nav-card" onclick="window.open('documents/Herrera Resume.md', '_blank')">
+                <span class="icon">📄</span>
+                <h3>Professional Resume</h3>
+                <p>ATS-optimized resume highlighting technology operations and leadership experience</p>
+                <a href="documents/Herrera Resume.md" class="btn" target="_blank">View Resume</a>
+            </div>
+            
+            <div class="nav-card" onclick="window.open('documents/Herrera Cover Letter.md', '_blank')">
+                <span class="icon">✉️</span>
+                <h3>Cover Letter</h3>
+                <p>Targeted cover letter showcasing passion for Universal Horror operations</p>
+                <a href="documents/Herrera Cover Letter.md" class="btn" target="_blank">View Cover Letter</a>
+            </div>
+            
+            <div class="nav-card" onclick="window.open('documents/Herrera Technical Portfolio.md', '_blank')">
+                <span class="icon">🎬</span>
+                <h3>Technical Portfolio</h3>
+                <p>Comprehensive portfolio demonstrating automation and special effects expertise</p>
+                <a href="documents/Herrera Technical Portfolio.md" class="btn" target="_blank">View Portfolio</a>
+            </div>
+            
+            <div class="nav-card" onclick="window.open('website/', '_blank')">
+                <span class="icon">🌐</span>
+                <h3>Live Demonstrations</h3>
+                <p>Interactive demos of horror automation systems and technology operations</p>
+                <a href="website/" class="btn" target="_blank">View Demos</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Ready to bring operational excellence to Universal Horror Unleashed</p>
+        </div>
     </div>
-    
-    <script>
-        // Auto-redirect after 3 seconds
-        setTimeout(function() {
-            window.location.href = 'documents/';
-        }, 3000);
-    </script>
 </body>
 </html>
