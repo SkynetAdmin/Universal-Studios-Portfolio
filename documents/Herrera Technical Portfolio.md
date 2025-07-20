@@ -364,5 +364,3 @@ M117 "System Safe - Awaiting Reset"
 *Complete source code and documentation available upon request*
 
 ---
-
-*This portfolio demonstrates the exact technical skills Universal Horror Unleashed needs for managing complex special effects, ensuring guest safety, and creating unforgettable horror experiences through innovative automation technology.*
