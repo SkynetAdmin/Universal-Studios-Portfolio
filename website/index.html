@@ -632,15 +632,32 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Horror Mode Styles - Subtle Version */
+        /* Horror Mode Styles - Gentle Color Flash */
         .horror-mode {
-            filter: hue-rotate(30deg) contrast(1.05);
-            animation: subtle-pulse 3s ease-in-out infinite;
+            animation: horror-flash 3s ease-in-out;
         }
 
-        @keyframes subtle-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.95; }
+        @keyframes horror-flash {
+            0% { 
+                background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #8b0000);
+                filter: hue-rotate(0deg);
+            }
+            25% { 
+                background: linear-gradient(135deg, #330033, #1a0a1a, #660066);
+                filter: hue-rotate(45deg);
+            }
+            50% { 
+                background: linear-gradient(135deg, #330000, #1a0000, #8b0000);
+                filter: hue-rotate(90deg);
+            }
+            75% { 
+                background: linear-gradient(135deg, #4b0082, #2d0052, #800080);
+                filter: hue-rotate(135deg);
+            }
+            100% { 
+                background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #8b0000);
+                filter: hue-rotate(0deg);
+            }
         }
     </style>
 </head>
@@ -816,6 +833,9 @@
         <div class="demo-container">
             <h3>🎃 Universal Horror Special Effects Programming</h3>
             <p>Interactive demonstrations of actual automation code for horror attractions - exactly what Universal needs!</p>
+            <div style="background: rgba(255, 0, 0, 0.1); border: 1px solid #cc0000; border-radius: 5px; padding: 1rem; margin: 1rem 0; text-align: center;">
+                <small><strong>⚠️ EPILEPSY NOTICE:</strong> All visual effects are designed to be epilepsy-safe with slow transitions and no rapid flashing.</small>
+            </div>
             
             <!-- Witch Robot Demo -->
             <div class="demo-card">
@@ -857,7 +877,7 @@
                     <button onclick="activateLight('green')">👹 Horror Unleashed</button>
                     <button onclick="startSequence()">🔄 Auto Sequence</button>
                     <button onclick="stopSequence()">⏹️ Stop</button>
-                    <button onclick="toggleHorrorMode()">🎃 Subtle Theme Mode</button>
+                    <button onclick="toggleHorrorMode()" title="Epilepsy-safe horror theme">🎃 Horror Mode</button>
                 </div>
             </div>
 
@@ -873,7 +893,7 @@
                 <div class="demo-controls">
                     <button onclick="fogBurst()">💨 Fog Burst</button>
                     <button onclick="fogCascade()">🌊 Cascading Fog</button>
-                    <button onclick="fogStrobe()">⚡ Strobe + Fog</button>
+                    <button onclick="fogGlow()">✨ Glow Effect</button>
                     <button onclick="clearFog()">🌬️ Clear</button>
                 </div>
             </div>
@@ -976,12 +996,12 @@
         function startSequence() {
             if (currentSequence) return;
             
-            showCodeDisplay('Starting automated sequence...\nM117 "Traffic Control Active"\nG4 P1000 ; Wait 1 second');
+            showCodeDisplay('Starting automated sequence...\nM117 "Horror Safety Protocol Active"\nG4 P1000 ; Wait 1 second');
             
             currentSequence = setInterval(() => {
                 activateLight('red');
-                setTimeout(() => activateLight('yellow'), 2000);
-                setTimeout(() => activateLight('green'), 4000);
+                setTimeout(() => activateLight('green'), 2000);
+                setTimeout(() => activateLight('red'), 4000);
             }, 6000);
         }
 
@@ -995,12 +1015,18 @@
 
         function toggleHorrorMode() {
             horrorModeActive = !horrorModeActive;
-            document.body.classList.toggle('horror-mode', horrorModeActive);
             
             if (horrorModeActive) {
-                showCodeDisplay('HORROR MODE ACTIVATED!\n; Spooky effects enabled\nM106 S255 ; Fog machines ON\nM300 S220 P500 ; Horror sound');
+                document.body.classList.add('horror-mode');
+                showCodeDisplay('🎃 HORROR MODE ACTIVATED! (3-second color flash)\n; Gentle horror atmosphere\nM106 S100 ; Atmospheric fog\nM300 S220 P500 ; Horror ambience\n; Purple-red color sequence');
+                
+                // Remove the class after 3 seconds so it can be triggered again
+                setTimeout(() => {
+                    document.body.classList.remove('horror-mode');
+                }, 3000);
             } else {
-                showCodeDisplay('Horror mode disabled.\nM107 ; All effects OFF\nM117 "Normal operation"');
+                document.body.classList.remove('horror-mode');
+                showCodeDisplay('Horror mode disabled.\nM107 ; All effects OFF\nM117 "Normal operation"\n; Standard lighting restored');
             }
         }
 
@@ -1058,8 +1084,8 @@
             showCodeDisplay('// CASCADING FOG EFFECT\nfor zone in [1,2,3,4]:\n    fog_zone_activate(zone)\n    time.sleep(0.5)\n// Staggered fog release\nlog_event("Cascade complete")');
         }
 
-        function fogStrobe() {
-            showCodeDisplay('// STROBE + FOG COMBO\nstrobe_light.activate()\nfog_controller.burst(intensity=100)\ntime.sleep(0.1)\nstrobe_light.flash(frequency=10)\n// Intense scare effect');
+        function fogGlow() {
+            showCodeDisplay('// SAFE GLOW + FOG COMBO\nglow_light.activate()\nfog_controller.burst(intensity=70)\ntime.sleep(2)\nglow_light.fade_in(duration=3)\n// Atmospheric horror effect');
         }
 
         function clearFog() {
