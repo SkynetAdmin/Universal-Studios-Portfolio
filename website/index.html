@@ -997,13 +997,20 @@
         function startSequence() {
             if (currentSequence) return;
             
-            showCodeDisplay('Starting automated sequence...\nM117 "Horror Safety Protocol Active"\n; Red-Green-Red pattern for attraction control\nG4 P1000 ; Wait 1 second');
+            showCodeDisplay('Starting automated sequence...\nM117 "Horror Traffic Control Active"\n; Red-Yellow-Green-Green-Yellow-Red pattern\n; Starting immediately...');
+            
+            // Start immediately (no delay)
+            activateLight('red');
             
             currentSequence = setInterval(() => {
+                // Full cycle: Red → Yellow → Green → Green → Yellow → Red
                 activateLight('red');
-                setTimeout(() => activateLight('green'), 2000);
-                setTimeout(() => activateLight('red'), 4000);
-            }, 6000);
+                setTimeout(() => activateLight('yellow'), 1000);  // Red for 1 sec
+                setTimeout(() => activateLight('green'), 2000);   // Yellow for 1 sec
+                setTimeout(() => activateLight('green'), 3000);   // Green for 1 sec (stay green)
+                setTimeout(() => activateLight('yellow'), 4000);  // Green for another 1 sec
+                setTimeout(() => activateLight('red'), 5000);     // Yellow for 1 sec, back to red
+            }, 6000); // Complete cycle every 6 seconds
         }
 
         function stopSequence() {
