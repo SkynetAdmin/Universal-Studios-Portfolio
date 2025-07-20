@@ -1511,6 +1511,44 @@
             <div class="demo-card">
                 <h4>🚦 Safety & Scene Control System</h4>
                 <p>Professional timing and emergency protocols for 24/7/365 operations</p>
+                
+                <!-- Traffic Light Status Panel -->
+                <div class="hardware-status-panel">
+                    <h5>🚦 Traffic Control Status Monitor</h5>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <div class="status-label">System Mode</div>
+                            <div class="status-indicator" id="trafficMode">IDLE</div>
+                            <div class="status-value" id="trafficCycle">0/6</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Red Signal</div>
+                            <div class="status-indicator" id="redStatus">OFF</div>
+                            <div class="status-value" id="redVoltage">0V</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Yellow Signal</div>
+                            <div class="status-indicator" id="yellowStatus">OFF</div>
+                            <div class="status-value" id="yellowVoltage">0V</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Green Signal</div>
+                            <div class="status-indicator" id="greenStatus">OFF</div>
+                            <div class="status-value" id="greenVoltage">0V</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Safety Circuit</div>
+                            <div class="status-indicator" id="safetyStatus">ARMED</div>
+                            <div class="status-value" id="safetyResponse">< 100ms</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Network Status</div>
+                            <div class="status-indicator" id="networkStatus">ONLINE</div>
+                            <div class="status-value" id="networkLatency">2ms</div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="traffic-light-container">
                     <div class="traffic-light">
                         <div class="light red" id="redLight"></div>
@@ -1525,6 +1563,23 @@
                     <button onclick="startSequence()">🔄 Auto Sequence</button>
                     <button onclick="stopSequence()">⏹️ Stop</button>
                     <button onclick="toggleNightmareMode()" title="Crazy light flashing for 4 seconds">💀 Nightmare Mode</button>
+                </div>
+                
+                <!-- Traffic Control Terminal -->
+                <div class="hardware-terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-title">🚦 Traffic Control Terminal</span>
+                        <div class="terminal-controls">
+                            <span class="terminal-status" id="trafficTerminalStatus">READY</span>
+                            <button class="terminal-clear" onclick="clearTrafficTerminal()">Clear</button>
+                        </div>
+                    </div>
+                    <div class="terminal-output" id="trafficTerminalOutput">Traffic Safety Controller v4.1 - Zone Alpha
+> GPIO pins: 18,19,20 configured
+> PLC interface: Modbus RTU active
+> Safety circuit: ARMED
+> Emergency response: < 100ms
+> Ready for traffic commands...</div>
                 </div>
             </div>
 
@@ -1836,8 +1891,54 @@
             document.getElementById('yellowLight').classList.remove('active');
             document.getElementById('greenLight').classList.remove('active');
             
-            // Activate selected light
+            // Reset all status indicators
+            updateTrafficStatus('redStatus', 'OFF');
+            updateTrafficStatus('yellowStatus', 'OFF');
+            updateTrafficStatus('greenStatus', 'OFF');
+            updateTrafficStatus('redVoltage', '0V');
+            updateTrafficStatus('yellowVoltage', '0V');
+            updateTrafficStatus('greenVoltage', '0V');
+            
+            // Activate selected light with professional logging
             document.getElementById(color + 'Light').classList.add('active');
+            
+            // Professional automation codes and terminal logging
+            switch(color) {
+                case 'red':
+                    logToTrafficTerminal('> EMERGENCY_STOP protocol initiated');
+                    logToTrafficTerminal('> M42 P18 S255 ; Red GPIO pin HIGH');
+                    logToTrafficTerminal('> Modbus: WRITE_COIL 001 TRUE');
+                    logToTrafficTerminal('> Zone Alpha: RED signal ACTIVE');
+                    logToTrafficTerminal('> Safety protocol: All motion HALT');
+                    updateTrafficStatus('redStatus', 'ACTIVE', 'error');
+                    updateTrafficStatus('redVoltage', '24V');
+                    updateTrafficStatus('trafficMode', 'EMERGENCY');
+                    updateTrafficStatus('safetyStatus', 'TRIGGERED', 'error');
+                    break;
+                    
+                case 'yellow':
+                    logToTrafficTerminal('> SCENE_TRANSITION mode activated');
+                    logToTrafficTerminal('> M42 P19 S255 ; Yellow GPIO pin HIGH');
+                    logToTrafficTerminal('> Modbus: WRITE_COIL 002 TRUE');
+                    logToTrafficTerminal('> Zone Alpha: YELLOW signal ACTIVE');
+                    logToTrafficTerminal('> Transition protocol: Prepare for change');
+                    updateTrafficStatus('yellowStatus', 'ACTIVE', 'warning');
+                    updateTrafficStatus('yellowVoltage', '24V');
+                    updateTrafficStatus('trafficMode', 'TRANSITION');
+                    break;
+                    
+                case 'green':
+                    logToTrafficTerminal('> HORROR_UNLEASHED mode activated');
+                    logToTrafficTerminal('> M42 P20 S255 ; Green GPIO pin HIGH');
+                    logToTrafficTerminal('> Modbus: WRITE_COIL 003 TRUE');
+                    logToTrafficTerminal('> Zone Alpha: GREEN signal ACTIVE');
+                    logToTrafficTerminal('> Full operations: All systems GO');
+                    updateTrafficStatus('greenStatus', 'ACTIVE', 'operational');
+                    updateTrafficStatus('greenVoltage', '24V');
+                    updateTrafficStatus('trafficMode', 'OPERATIONAL');
+                    updateTrafficStatus('safetyStatus', 'MONITORING', 'operational');
+                    break;
+            }
             
             // Show corresponding code
             showCode(color);
@@ -1845,6 +1946,16 @@
             // Auto-clear after 3 seconds
             setTimeout(() => {
                 document.getElementById(color + 'Light').classList.remove('active');
+                logToTrafficTerminal('> M42 P18 S0 P19 S0 P20 S0 ; All GPIO LOW');
+                logToTrafficTerminal('> Zone Alpha: All signals OFF');
+                updateTrafficStatus('redStatus', 'OFF');
+                updateTrafficStatus('yellowStatus', 'OFF');
+                updateTrafficStatus('greenStatus', 'OFF');
+                updateTrafficStatus('redVoltage', '0V');
+                updateTrafficStatus('yellowVoltage', '0V');
+                updateTrafficStatus('greenVoltage', '0V');
+                updateTrafficStatus('trafficMode', 'IDLE');
+                updateTrafficStatus('safetyStatus', 'ARMED');
             }, 3000);
         }
 
@@ -1852,6 +1963,15 @@
             if (currentSequence) return;
             
             showCodeDisplay('Starting automated sequence...\nM117 "Horror Traffic Control Active"\n; Red-Yellow-Green-Green-Yellow-Red pattern\n; Starting immediately...');
+            
+            logToTrafficTerminal('> AUTO_SEQUENCE protocol initiated');
+            logToTrafficTerminal('> G90 ; Absolute positioning mode');
+            logToTrafficTerminal('> M117 "Horror Traffic Control Active"');
+            logToTrafficTerminal('> Modbus: WRITE_HOLDING_REG 100 6 ; 6-step cycle');
+            logToTrafficTerminal('> Zone Alpha: Beginning automated cycle');
+            
+            updateTrafficStatus('trafficMode', 'AUTO SEQUENCE', 'active');
+            updateTrafficStatus('trafficCycle', '1/6');
             
             let step = 0;
             
@@ -1861,21 +1981,40 @@
             currentSequence = setInterval(() => {
                 switch(step) {
                     case 0: // Red
+                        logToTrafficTerminal('> G1 S1 ; Step 1 - Emergency position');
+                        logToTrafficTerminal('> Cycle 1/6: RED phase active');
+                        updateTrafficStatus('trafficCycle', '1/6');
                         activateLight('red');
                         break;
                     case 1: // Yellow
+                        logToTrafficTerminal('> G1 S2 ; Step 2 - Transition position');
+                        logToTrafficTerminal('> Cycle 2/6: YELLOW phase active');
+                        updateTrafficStatus('trafficCycle', '2/6');
                         activateLight('yellow');
                         break;
                     case 2: // Green (first time)
+                        logToTrafficTerminal('> G1 S3 ; Step 3 - Operational position');
+                        logToTrafficTerminal('> Cycle 3/6: GREEN phase active (first)');
+                        updateTrafficStatus('trafficCycle', '3/6');
                         activateLight('green');
                         break;
                     case 3: // Green (second time)
+                        logToTrafficTerminal('> G1 S4 ; Step 4 - Extended operational');
+                        logToTrafficTerminal('> Cycle 4/6: GREEN phase active (second)');
+                        updateTrafficStatus('trafficCycle', '4/6');
                         activateLight('green');
                         break;
                     case 4: // Yellow (going back)
+                        logToTrafficTerminal('> G1 S5 ; Step 5 - Return transition');
+                        logToTrafficTerminal('> Cycle 5/6: YELLOW phase active (return)');
+                        updateTrafficStatus('trafficCycle', '5/6');
                         activateLight('yellow');
                         break;
                     case 5: // Red (back to start)
+                        logToTrafficTerminal('> G1 S6 ; Step 6 - Return to start');
+                        logToTrafficTerminal('> Cycle 6/6: RED phase active (complete)');
+                        logToTrafficTerminal('> G28 ; Return to home position');
+                        updateTrafficStatus('trafficCycle', '6/6');
                         activateLight('red');
                         step = -1; // Will become 0 after increment
                         break;
@@ -1900,10 +2039,29 @@
                 nightmareTimeout = null;
             }
             
+            // Professional stop sequence
+            logToTrafficTerminal('> EMERGENCY_STOP command received');
+            logToTrafficTerminal('> M112 ; Emergency stop all operations');
+            logToTrafficTerminal('> M42 P18 S0 P19 S0 P20 S0 ; All GPIO LOW');
+            logToTrafficTerminal('> Modbus: WRITE_MULTIPLE_COILS 001-003 FALSE');
+            logToTrafficTerminal('> Zone Alpha: All signals OFF');
+            logToTrafficTerminal('> System returned to IDLE state');
+            
             // Clear all lights
             document.getElementById('redLight').classList.remove('active');
             document.getElementById('yellowLight').classList.remove('active');
             document.getElementById('greenLight').classList.remove('active');
+            
+            // Reset all status indicators
+            updateTrafficStatus('trafficMode', 'IDLE');
+            updateTrafficStatus('trafficCycle', '0/6');
+            updateTrafficStatus('redStatus', 'OFF');
+            updateTrafficStatus('yellowStatus', 'OFF');
+            updateTrafficStatus('greenStatus', 'OFF');
+            updateTrafficStatus('redVoltage', '0V');
+            updateTrafficStatus('yellowVoltage', '0V');
+            updateTrafficStatus('greenVoltage', '0V');
+            updateTrafficStatus('safetyStatus', 'ARMED');
             
             showCodeDisplay('All sequences stopped.\nM112 ; Emergency stop\nM117 "System idle"\n; All lights OFF');
         }
@@ -1916,19 +2074,39 @@
                 nightmareInterval = null;
                 nightmareTimeout = null;
                 
+                // Professional nightmare stop
+                logToTrafficTerminal('> NIGHTMARE_MODE terminated');
+                logToTrafficTerminal('> M107 ; All effects OFF');
+                logToTrafficTerminal('> G28 ; Return to home position');
+                logToTrafficTerminal('> Zone Alpha: Nightmare sequence ended');
+                
                 // Clear all lights
                 document.getElementById('redLight').classList.remove('active');
                 document.getElementById('yellowLight').classList.remove('active');
                 document.getElementById('greenLight').classList.remove('active');
                 
+                updateTrafficStatus('trafficMode', 'IDLE');
+                updateTrafficStatus('safetyStatus', 'ARMED');
+                
                 showCodeDisplay('💀 NIGHTMARE MODE STOPPED\nM107 ; All effects OFF\nM117 "Nightmare ended"\n; Lights restored to normal');
                 return;
             }
             
-            // Start nightmare mode
+            // Start nightmare mode with professional logging
             showCodeDisplay('💀 NIGHTMARE MODE ACTIVATED!\n; Traffic lights going CRAZY for 4 seconds\nM117 "CHAOS UNLEASHED"\n; Random light flashing sequence...');
             
+            logToTrafficTerminal('> 💀 NIGHTMARE_MODE protocol initiated');
+            logToTrafficTerminal('> M117 "CHAOS UNLEASHED"');
+            logToTrafficTerminal('> G91 ; Relative positioning mode');
+            logToTrafficTerminal('> Modbus: WRITE_HOLDING_REG 200 1 ; Chaos mode');
+            logToTrafficTerminal('> Zone Alpha: Random flashing sequence ACTIVE');
+            logToTrafficTerminal('> Safety override: NIGHTMARE protocol');
+            
+            updateTrafficStatus('trafficMode', 'NIGHTMARE', 'error');
+            updateTrafficStatus('safetyStatus', 'OVERRIDE', 'warning');
+            
             const colors = ['red', 'yellow', 'green'];
+            let chaosStep = 0;
             
             nightmareInterval = setInterval(() => {
                 // Turn off all lights
@@ -1936,16 +2114,35 @@
                 document.getElementById('yellowLight').classList.remove('active');
                 document.getElementById('greenLight').classList.remove('active');
                 
-                // Turn on random light(s)
+                // Reset status
+                updateTrafficStatus('redStatus', 'OFF');
+                updateTrafficStatus('yellowStatus', 'OFF');
+                updateTrafficStatus('greenStatus', 'OFF');
+                
+                // Turn on random light(s) with logging
                 const numLights = Math.floor(Math.random() * 3) + 1; // 1-3 lights
+                const activeLights = [];
+                
                 for (let i = 0; i < numLights; i++) {
                     const randomColor = colors[Math.floor(Math.random() * colors.length)];
                     document.getElementById(randomColor + 'Light').classList.add('active');
+                    activeLights.push(randomColor.toUpperCase());
+                    
+                    // Update status for active lights
+                    updateTrafficStatus(randomColor + 'Status', 'CHAOS', 'error');
+                    updateTrafficStatus(randomColor + 'Voltage', '24V');
+                }
+                
+                chaosStep++;
+                if (chaosStep % 5 === 0) {
+                    logToTrafficTerminal(`> Chaos step ${chaosStep}: ${activeLights.join('+')} active`);
                 }
             }, 120); // Change every 120ms for crazy flashing
             
             // Auto-stop after 4 seconds
             nightmareTimeout = setTimeout(() => {
+                logToTrafficTerminal('> Nightmare sequence timeout reached');
+                logToTrafficTerminal('> Automatic safety recovery initiated');
                 stopSequence();
             }, 4000);
         }
@@ -2176,7 +2373,46 @@
             }, 4000);
         }
 
-        // Management Dashboard Functions
+        // Traffic light status update functions
+        function updateTrafficStatus(elementId, status, statusClass = '') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                if (elementId.includes('Voltage') || elementId.includes('Cycle') || 
+                    elementId.includes('Latency') || elementId.includes('Response')) {
+                    // This is a value field
+                    element.textContent = status;
+                } else {
+                    // This is a status indicator
+                    element.textContent = status;
+                    element.className = 'status-indicator';
+                    if (statusClass) {
+                        element.classList.add(statusClass);
+                    }
+                }
+            }
+        }
+
+        // Traffic terminal logging functions
+        function logToTrafficTerminal(message) {
+            const terminal = document.getElementById('trafficTerminalOutput');
+            if (terminal) {
+                const timestamp = new Date().toLocaleTimeString();
+                terminal.textContent += `\n[${timestamp}] ${message}`;
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        }
+
+        function clearTrafficTerminal() {
+            const terminal = document.getElementById('trafficTerminalOutput');
+            if (terminal) {
+                terminal.textContent = `Traffic Safety Controller v4.1 - Zone Alpha
+> GPIO pins: 18,19,20 configured
+> PLC interface: Modbus RTU active
+> Safety circuit: ARMED
+> Emergency response: < 100ms
+> Ready for traffic commands...`;
+            }
+        }
         function initiateSystemCheck() {
             logToManagementTerminal('> SYSTEM CHECK initiated by Technology Operations Manager');
             logToManagementTerminal('> Scanning all 23 active attractions...');
@@ -2683,6 +2919,7 @@
             clearFogTerminal();
             clearManagementTerminal();
             clearPythonTerminal();
+            clearTrafficTerminal();
         });
     </script>
 </body>
