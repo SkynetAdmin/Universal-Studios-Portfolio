@@ -4,11 +4,11 @@
 
 ---
 
-## 🚦 **FEATURED PROJECT: SMART TRAFFIC LIGHT CONTROLLER**
+## 🚦 **FEATURED PROJECT: SAFETY & SCENE CONTROL SYSTEM**
 *Perfect example of automation skills applicable to UHU special effects systems*
 
 ### **Project Overview**
-Developed a multi-platform traffic light simulation system demonstrating:
+Developed a multi-platform safety and scene control system demonstrating:
 - **Cross-platform compatibility** (Windows, macOS, Linux)
 - **G-code/M-code programming** for hardware control
 - **Automation sequences** for entertainment applications
@@ -349,9 +349,18 @@ M117 "System Safe - Awaiting Reset"
 📍 Las Vegas, NV (5.5 miles from Area 15)
 
 **🎬 Live Demonstration Available**  
-*Ready to showcase traffic light controller and discuss UHU applications during interview*
+*Ready to showcase Universal Horror Unleashed automation systems during interview*
 
-**💻 Code Repository**  
+**💻 Interactive Portfolio**  
+**🌐 Website:** https://skynetadmin.github.io/Universal-Studios-Portfolio/website/
+
+**Portfolio Demonstrations:**
+- **👹 Animatronic Witch Controller**: Arduino Mega 2560 + RAMPS 1.4 with G-Code programming
+- **🚦 Safety & Scene Control System**: Emergency protocols and industrial automation integration  
+- **🌫️ Fog Machine Choreography**: DMX512 protocol with multi-zone deployment and RGB lighting
+- **📊 Technology Operations Management Dashboard**: Executive-level oversight with KPIs and team management
+- **� Python Automation Scripts**: Docker orchestration, serial communication, and system monitoring
+
 *Complete source code and documentation available upon request*
 
 ---
