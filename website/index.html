@@ -632,12 +632,12 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Horror Mode Styles - Gentle Color Flash */
-        .horror-mode {
-            animation: horror-flash 3s ease-in-out;
+        /* Nightmare Mode - Screen Flash Effect */
+        .nightmare-flash {
+            animation: nightmare-flash 3s ease-in-out;
         }
 
-        @keyframes horror-flash {
+        @keyframes nightmare-flash {
             0% { 
                 background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #8b0000);
                 filter: hue-rotate(0deg);
@@ -877,7 +877,7 @@
                     <button onclick="activateLight('green')">👹 Horror Unleashed</button>
                     <button onclick="startSequence()">🔄 Auto Sequence</button>
                     <button onclick="stopSequence()">⏹️ Stop</button>
-                    <button onclick="toggleHorrorMode()" title="Epilepsy-safe horror theme">🎃 Horror Mode</button>
+                    <button onclick="toggleNightmareMode()" title="Random crazy lights for 3 seconds">💀 Nightmare Mode</button>
                 </div>
             </div>
 
@@ -973,7 +973,8 @@
     <script>
         // Emergency workaround - JavaScript functions embedded directly
         let currentSequence = null;
-        let horrorModeActive = false;
+        let nightmareInterval = null;
+        let nightmareTimeout = null;
 
         function activateLight(color) {
             // Clear all lights first
@@ -996,7 +997,7 @@
         function startSequence() {
             if (currentSequence) return;
             
-            showCodeDisplay('Starting automated sequence...\nM117 "Horror Safety Protocol Active"\nG4 P1000 ; Wait 1 second');
+            showCodeDisplay('Starting automated sequence...\nM117 "Horror Safety Protocol Active"\n; Red-Green-Red pattern for attraction control\nG4 P1000 ; Wait 1 second');
             
             currentSequence = setInterval(() => {
                 activateLight('red');
@@ -1009,25 +1010,72 @@
             if (currentSequence) {
                 clearInterval(currentSequence);
                 currentSequence = null;
-                showCodeDisplay('Sequence stopped.\nM112 ; Emergency stop\nM117 "System idle"');
             }
+            
+            // Also stop nightmare mode if running
+            if (nightmareInterval) {
+                clearInterval(nightmareInterval);
+                nightmareInterval = null;
+            }
+            if (nightmareTimeout) {
+                clearTimeout(nightmareTimeout);
+                nightmareTimeout = null;
+            }
+            
+            // Clear all lights
+            document.getElementById('redLight').classList.remove('active');
+            document.getElementById('yellowLight').classList.remove('active');
+            document.getElementById('greenLight').classList.remove('active');
+            
+            showCodeDisplay('All sequences stopped.\nM112 ; Emergency stop\nM117 "System idle"\n; All lights OFF');
         }
 
-        function toggleHorrorMode() {
-            horrorModeActive = !horrorModeActive;
-            
-            if (horrorModeActive) {
-                document.body.classList.add('horror-mode');
-                showCodeDisplay('🎃 HORROR MODE ACTIVATED! (3-second color flash)\n; Gentle horror atmosphere\nM106 S100 ; Atmospheric fog\nM300 S220 P500 ; Horror ambience\n; Purple-red color sequence');
+        function toggleNightmareMode() {
+            if (nightmareInterval) {
+                // Stop nightmare mode
+                clearInterval(nightmareInterval);
+                clearTimeout(nightmareTimeout);
+                nightmareInterval = null;
+                nightmareTimeout = null;
                 
-                // Remove the class after 3 seconds so it can be triggered again
-                setTimeout(() => {
-                    document.body.classList.remove('horror-mode');
-                }, 3000);
-            } else {
-                document.body.classList.remove('horror-mode');
-                showCodeDisplay('Horror mode disabled.\nM107 ; All effects OFF\nM117 "Normal operation"\n; Standard lighting restored');
+                // Clear all lights
+                document.getElementById('redLight').classList.remove('active');
+                document.getElementById('yellowLight').classList.remove('active');
+                document.getElementById('greenLight').classList.remove('active');
+                
+                // Remove screen flash
+                document.body.classList.remove('nightmare-flash');
+                
+                showCodeDisplay('💀 NIGHTMARE MODE STOPPED\nM107 ; All effects OFF\nM117 "Nightmare ended"\n; System restored to normal');
+                return;
             }
+            
+            // Start nightmare mode
+            showCodeDisplay('💀 NIGHTMARE MODE ACTIVATED!\n; Random light chaos + screen flash\nM117 "CHAOS UNLEASHED"\n; Lights going crazy for 3 seconds...');
+            
+            // Add screen flash effect
+            document.body.classList.add('nightmare-flash');
+            
+            const colors = ['red', 'yellow', 'green'];
+            
+            nightmareInterval = setInterval(() => {
+                // Turn off all lights
+                document.getElementById('redLight').classList.remove('active');
+                document.getElementById('yellowLight').classList.remove('active');
+                document.getElementById('greenLight').classList.remove('active');
+                
+                // Turn on random light(s)
+                const numLights = Math.floor(Math.random() * 3) + 1; // 1-3 lights
+                for (let i = 0; i < numLights; i++) {
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    document.getElementById(randomColor + 'Light').classList.add('active');
+                }
+            }, 150); // Change every 150ms for crazy effect
+            
+            // Auto-stop after 3 seconds
+            nightmareTimeout = setTimeout(() => {
+                stopSequence();
+            }, 3000);
         }
 
         function showCode(type) {
