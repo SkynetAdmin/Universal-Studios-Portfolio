@@ -2,7 +2,31 @@
 
 ## 🎯 Technology Operations Manager Application
 
-This repository contains the complete application package for the Technology Operations Manager position at Universal Horror Unleashed, including an interactive portfolio website demonstrating technical automation skills.
+**📧 herrera.hannibal84@gmail.com | 📱 702-626-7678 | 📍 Las Vegas, NV**
+
+---
+
+## 🎃 **MAIN PORTFOLIO** ⭐ 
+### [📖 CLICK HERE - Complete Technical Portfolio](HANNIBAL_HERRERA_UNIVERSAL_HORROR_PORTFOLIO.md)
+
+**This is the primary document showcasing:**
+- Real G-Code automation examples for horror effects
+- Python programming for fog machines and animatronics  
+- Docker containerization for Universal's systems
+- Military crisis management experience
+- Direct applications for Universal Horror Unleashed
+
+---
+
+## 📁 Supporting Application Documents
+
+**Resume & Cover Letter:**
+- [📄 ATS-Optimized Resume](documents/Hannibal_Herrera_Resume_Universal_Parks_ATS_OPTIMIZED.md)
+- [📝 Targeted Cover Letter](documents/Hannibal_Herrera_Cover_Letter_Universal_Parks_TARGETED.md)
+- [📊 Additional Portfolio Details](documents/Hannibal_Herrera_Portfolio_Universal_Parks.md)
+
+**Website Portfolio:**
+- [🌐 Interactive Demo Site](https://skynetadmin.github.io/Universal-Studios-Portfolio/website/) (Basic Version)
 
 ---
 
