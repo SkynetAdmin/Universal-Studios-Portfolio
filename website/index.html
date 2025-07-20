@@ -577,11 +577,185 @@
         }
 
         .fog-output {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0);
-            border-radius: 50%;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            border: 2px solid #0f3460;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin: 15px 0;
             transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fog-output::before {
+            content: 'FOG SIMULATION AREA';
+            color: #666;
+            font-size: 12px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .fog-output.fog-burst {
+            background: linear-gradient(45deg, #2c2c54, #40407a, #706fd3);
+            box-shadow: 0 0 30px rgba(112, 111, 211, 0.6);
+            animation: fogBurstEffect 3s ease-in-out;
+        }
+
+        .fog-output.fog-burst::before {
+            opacity: 0;
+        }
+
+        .fog-output.fog-burst::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.4) 0%, 
+                rgba(200, 200, 200, 0.3) 30%, 
+                rgba(112, 111, 211, 0.2) 60%, 
+                rgba(0, 0, 0, 0) 100%);
+            animation: fogSwirl 2s ease-in-out infinite;
+        }
+
+        .fog-output.fog-cascade {
+            background: linear-gradient(180deg, 
+                #1a1a2e 0%, 
+                #2c2c54 25%, 
+                #40407a 50%, 
+                #706fd3 75%, 
+                #a29bfe 100%);
+            animation: cascadeEffect 6s ease-in-out;
+        }
+
+        .fog-output.fog-cascade::before {
+            opacity: 0;
+        }
+
+        .fog-output.fog-cascade::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.6) 0%, 
+                rgba(200, 200, 200, 0.4) 50%, 
+                rgba(0, 0, 0, 0) 100%);
+            animation: cascadeFlow 5s ease-in-out;
+        }
+
+        .fog-output.fog-glow {
+            background: linear-gradient(45deg, 
+                #ff6b6b, #ee5a6f, #ce4993, #a29bfe, #6c5ce7);
+            box-shadow: 0 0 40px rgba(255, 107, 107, 0.7);
+            animation: glowPulse 4s ease-in-out;
+        }
+
+        .fog-output.fog-glow::before {
+            opacity: 0;
+        }
+
+        .fog-output.fog-glow::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.5) 0%, 
+                rgba(255, 107, 107, 0.3) 40%, 
+                rgba(108, 92, 231, 0.2) 80%, 
+                rgba(0, 0, 0, 0) 100%);
+            animation: glowSwirl 3s ease-in-out infinite;
+        }
+
+        .fog-output.fog-clearing {
+            background: linear-gradient(45deg, #74b9ff, #0984e3, #6c5ce7, #a29bfe);
+            animation: clearingEffect 4s ease-in-out;
+        }
+
+        .fog-output.fog-clearing::before {
+            opacity: 0;
+        }
+
+        .fog-output.fog-clearing::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.8) 50%, 
+                rgba(255, 255, 255, 0) 100%);
+            animation: ventilationSweep 3s ease-in-out;
+            width: 200%;
+        }
+
+        @keyframes fogBurstEffect {
+            0% { transform: scale(1); box-shadow: 0 0 30px rgba(112, 111, 211, 0.6); }
+            50% { transform: scale(1.02); box-shadow: 0 0 60px rgba(112, 111, 211, 0.9); }
+            100% { transform: scale(1); box-shadow: 0 0 30px rgba(112, 111, 211, 0.6); }
+        }
+
+        @keyframes fogSwirl {
+            0% { transform: rotate(0deg) scale(0.8); opacity: 0.6; }
+            50% { transform: rotate(180deg) scale(1.1); opacity: 0.9; }
+            100% { transform: rotate(360deg) scale(0.8); opacity: 0.6; }
+        }
+
+        @keyframes cascadeEffect {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 0% 25%; }
+            50% { background-position: 0% 50%; }
+            75% { background-position: 0% 75%; }
+            100% { background-position: 0% 100%; }
+        }
+
+        @keyframes cascadeFlow {
+            0% { transform: translateY(-100%); opacity: 0; }
+            25% { transform: translateY(-50%); opacity: 0.7; }
+            50% { transform: translateY(0%); opacity: 1; }
+            75% { transform: translateY(50%); opacity: 0.7; }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.4); }
+            50% { box-shadow: 0 0 80px rgba(255, 107, 107, 0.9); }
+            100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.4); }
+        }
+
+        @keyframes glowSwirl {
+            0% { transform: rotate(0deg) scale(0.7); opacity: 0.5; }
+            50% { transform: rotate(180deg) scale(1.3); opacity: 0.8; }
+            100% { transform: rotate(360deg) scale(0.7); opacity: 0.5; }
+        }
+
+        @keyframes clearingEffect {
+            0% { filter: blur(0px); }
+            50% { filter: blur(3px); }
+            100% { filter: blur(0px); }
+        }
+
+        @keyframes ventilationSweep {
+            0% { transform: translateX(-100%) skewX(-15deg); opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) skewX(-15deg); opacity: 0.5; }
         }
 
         .fog-active {
@@ -775,6 +949,264 @@
             .contact-info {
                 flex-direction: column;
                 align-items: center;
+            }
+        }
+
+        /* Management Dashboard Styles */
+        .executive-dashboard {
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid var(--universal-orange);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--universal-orange);
+        }
+
+        .dashboard-header h5 {
+            color: var(--universal-orange);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .shift-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .shift-status, .uptime-display {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid var(--universal-orange);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: var(--universal-orange);
+            font-weight: bold;
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .kpi-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid var(--neon-green);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(57, 255, 20, 0.2);
+        }
+
+        .kpi-title {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .kpi-value {
+            color: var(--neon-green);
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .kpi-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .kpi-status.operational {
+            background: var(--neon-green);
+            color: var(--horror-black);
+        }
+
+        .kpi-status.excellent {
+            background: #00ff88;
+            color: var(--horror-black);
+        }
+
+        .kpi-status.ready {
+            background: var(--universal-orange);
+            color: white;
+        }
+
+        /* Systems Overview */
+        .systems-overview {
+            margin: 2rem 0;
+        }
+
+        .system-category {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .system-category h6 {
+            color: var(--universal-orange);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .system-item {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            border-radius: 5px;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .system-name {
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
+        .system-status {
+            padding: 0.2rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .system-status.operational {
+            background: var(--neon-green);
+            color: var(--horror-black);
+        }
+
+        .system-status.ready {
+            background: var(--universal-orange);
+            color: white;
+        }
+
+        .system-count {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-align: right;
+        }
+
+        /* Executive Controls */
+        .executive-controls {
+            margin: 2rem 0;
+            background: rgba(139, 0, 0, 0.1);
+            border: 2px solid var(--horror-blood);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .executive-controls h6 {
+            color: var(--horror-blood);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .control-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .control-buttons button {
+            background: linear-gradient(45deg, var(--horror-blood), #660000);
+            border: 2px solid var(--horror-blood);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: none;
+        }
+
+        .control-buttons button:hover {
+            background: linear-gradient(45deg, #aa0000, var(--horror-blood));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        /* Management Terminal */
+        .management-terminal {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--universal-orange);
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        .management-terminal .terminal-header {
+            background: rgba(255, 107, 53, 0.1);
+            border-bottom: 1px solid var(--universal-orange);
+        }
+
+        .management-terminal .terminal-title {
+            color: var(--universal-orange);
+        }
+
+        .management-terminal .terminal-status {
+            color: var(--universal-orange);
+            border-color: var(--universal-orange);
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .management-terminal .terminal-clear {
+            border-color: var(--universal-orange);
+            color: var(--universal-orange);
+        }
+
+        .management-terminal .terminal-clear:hover {
+            background: var(--universal-orange);
+            color: var(--horror-black);
+        }
+
+        .management-terminal .terminal-output {
+            color: var(--universal-orange);
+        }
+
+        @media (max-width: 768px) {
+            .kpi-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .shift-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .control-buttons {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1099,16 +1531,212 @@
             <div class="demo-card">
                 <h4>🌫️ Fog Machine Choreography</h4>
                 <p>Synchronized fog effects with precise timing control</p>
+                
+                <!-- Fog Status Panel -->
+                <div class="hardware-status-panel">
+                    <h5>🌫️ Fog System Status Monitor</h5>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <div class="status-label">Fog Output</div>
+                            <div class="status-indicator" id="fogStatus">IDLE</div>
+                            <div class="status-value" id="fogIntensity">0%</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Heater Core</div>
+                            <div class="status-indicator" id="heaterStatus">READY</div>
+                            <div class="status-value" id="heaterTemp">180°C</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Fluid Level</div>
+                            <div class="status-indicator" id="fluidLevel">FULL</div>
+                            <div class="status-value" id="fluidPercent">95%</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Pump Pressure</div>
+                            <div class="status-indicator" id="pumpStatus">STANDBY</div>
+                            <div class="status-value" id="pumpPressure">0 PSI</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">Ventilation</div>
+                            <div class="status-indicator" id="ventStatus">OFF</div>
+                            <div class="status-value" id="ventSpeed">0 RPM</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">LED Array</div>
+                            <div class="status-indicator" id="ledStatus">OFF</div>
+                            <div class="status-value" id="ledBrightness">0%</div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="fog-demo">
                     <div class="fog-machine" id="fogMachine">
                         <div class="fog-output" id="fogOutput"></div>
                     </div>
                 </div>
+                
                 <div class="demo-controls">
                     <button onclick="fogBurst()">💨 Fog Burst</button>
                     <button onclick="fogCascade()">🌊 Cascading Fog</button>
                     <button onclick="fogGlow()">✨ Glow Effect</button>
                     <button onclick="clearFog()">🌬️ Clear</button>
+                </div>
+                
+                <!-- Fog Specs and Terminal Side by Side -->
+                <div class="hardware-bottom-section">
+                    <div class="hardware-specs">
+                        <h5>Fog System Stack:</h5>
+                        <ul>
+                            <li>CHAUVET DJ Hurricane 1000 Base Unit</li>
+                            <li>High-Density Fog Fluid (Water-Based)</li>
+                            <li>700W Heating Element</li>
+                            <li>DMX512 Control Interface</li>
+                            <li>RGB LED Uplighting Array</li>
+                            <li>Variable Speed Exhaust Fans</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Fog Terminal Display -->
+                    <div class="hardware-terminal">
+                        <div class="terminal-header">
+                            <span class="terminal-title">🌫️ Fog Control Terminal - DMX:001</span>
+                            <div class="terminal-controls">
+                                <span class="terminal-status" id="fogTerminalStatus">CONNECTED</span>
+                                <button class="terminal-clear" onclick="clearFogTerminal()">Clear</button>
+                            </div>
+                        </div>
+                        <div class="terminal-output" id="fogTerminalOutput">CHAUVET Hurricane 1000 - DMX Controller v3.2
+> Heater core: 180°C (Ready)
+> Fluid level: 95% (Full)
+> DMX channel 001 active
+> Ready for fog commands...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Management Operations Dashboard -->
+            <div class="demo-card">
+                <h4>📊 Technology Operations Management Dashboard</h4>
+                <p>Real-time oversight of all Universal Horror Unleashed technology systems - the boss's view</p>
+                
+                <!-- Executive Control Panel -->
+                <div class="executive-dashboard">
+                    <div class="dashboard-header">
+                        <h5>🎯 Technology Operations Manager - Central Command</h5>
+                        <div class="shift-info">
+                            <span class="shift-status">Current Shift: Night Operations</span>
+                            <span class="uptime-display">System Uptime: 99.7%</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Key Performance Indicators -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-title">Active Attractions</div>
+                            <div class="kpi-value" id="activeAttractions">23</div>
+                            <div class="kpi-status operational">All Operational</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-title">Guest Experience Score</div>
+                            <div class="kpi-value" id="guestScore">9.2</div>
+                            <div class="kpi-status excellent">Excellent</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-title">Emergency Response</div>
+                            <div class="kpi-value" id="responseTime">< 30s</div>
+                            <div class="kpi-status ready">Ready</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-title">Team Status</div>
+                            <div class="kpi-value" id="teamStatus">15</div>
+                            <div class="kpi-status operational">On Duty</div>
+                        </div>
+                    </div>
+                    
+                    <!-- System Status Overview -->
+                    <div class="systems-overview">
+                        <div class="system-category">
+                            <h6>🎪 Attraction Systems</h6>
+                            <div class="system-grid">
+                                <div class="system-item">
+                                    <span class="system-name">Animatronics</span>
+                                    <span class="system-status operational" id="animatronicsStatus">Online</span>
+                                    <span class="system-count">47 Units</span>
+                                </div>
+                                <div class="system-item">
+                                    <span class="system-name">Fog Systems</span>
+                                    <span class="system-status operational" id="fogSystemsStatus">Active</span>
+                                    <span class="system-count">12 Zones</span>
+                                </div>
+                                <div class="system-item">
+                                    <span class="system-name">Lighting Control</span>
+                                    <span class="system-status operational" id="lightingStatus">Synchronized</span>
+                                    <span class="system-count">156 Fixtures</span>
+                                </div>
+                                <div class="system-item">
+                                    <span class="system-name">Audio Systems</span>
+                                    <span class="system-status operational" id="audioStatus">Streaming</span>
+                                    <span class="system-count">23 Zones</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="system-category">
+                            <h6>🛡️ Safety & Operations</h6>
+                            <div class="system-grid">
+                                <div class="system-item">
+                                    <span class="system-name">Emergency Systems</span>
+                                    <span class="system-status ready" id="emergencyStatus">Armed</span>
+                                    <span class="system-count">100% Ready</span>
+                                </div>
+                                <div class="system-item">
+                                    <span class="system-name">Motion Sensors</span>
+                                    <span class="system-status operational" id="sensorStatus">Monitoring</span>
+                                    <span class="system-count">89 Active</span>
+                                </div>
+                                <div class="system-item">
+                                    <span class="system-name">Network Infrastructure</span>
+                                    <span class="system-status operational" id="networkStatus">Stable</span>
+                                    <span class="system-count">Latency: 2ms</span>
+                                </div>
+                                <div class="system-item">
+                                    <span class="system-name">Docker Containers</span>
+                                    <span class="system-status operational" id="dockerStatus">Running</span>
+                                    <span class="system-count">34 Services</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Executive Actions -->
+                    <div class="executive-controls">
+                        <h6>🎛️ Management Controls</h6>
+                        <div class="control-buttons">
+                            <button onclick="initiateSystemCheck()">🔍 Full System Check</button>
+                            <button onclick="teamStatusUpdate()">👥 Team Status Report</button>
+                            <button onclick="emergencyDrill()">🚨 Emergency Drill</button>
+                            <button onclick="performanceReport()">📈 Performance Report</button>
+                            <button onclick="scheduleMaintenanceWindow()">🔧 Schedule Maintenance</button>
+                            <button onclick="guestExperienceUpdate()">⭐ Guest Experience Update</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Operations Terminal -->
+                    <div class="management-terminal">
+                        <div class="terminal-header">
+                            <span class="terminal-title">💼 Operations Command Center - Executive Terminal</span>
+                            <div class="terminal-controls">
+                                <span class="terminal-status" id="managementTerminalStatus">AUTHORIZED</span>
+                                <button class="terminal-clear" onclick="clearManagementTerminal()">Clear Log</button>
+                            </div>
+                        </div>
+                        <div class="terminal-output" id="managementTerminalOutput">Universal Horror Unleashed - Technology Operations Manager
+[HANNIBAL HERRERA - AUTHORIZED]
+> All systems nominal - 24/7/365 operations active
+> Team of 15 technicians on current shift
+> Guest satisfaction: 9.2/10 (Above target)
+> Ready for management commands...</div>
+                    </div>
                 </div>
             </div>
 
@@ -1122,11 +1750,22 @@
                     <button onclick="showPythonDemo('docker')">🐳 Docker Deploy</button>
                     <button onclick="showPythonDemo('monitoring')">📊 System Monitor</button>
                 </div>
-            </div>
-
-            <div class="code-display" id="codeDisplay">
-// Click any demo button to see live automation code!
-// Each demo shows real programming for Universal's hardware needs.
+                
+                <!-- Python Terminal Display -->
+                <div class="hardware-terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-title">🐍 Python Automation Terminal</span>
+                        <div class="terminal-controls">
+                            <span class="terminal-status" id="pythonTerminalStatus">READY</span>
+                            <button class="terminal-clear" onclick="clearPythonTerminal()">Clear</button>
+                        </div>
+                    </div>
+                    <div class="terminal-output" id="pythonTerminalOutput">Python 3.11.0 - Universal Automation Framework
+> Virtual environment: universal_ops
+> Docker engine: Running
+> All modules loaded successfully
+> Ready for automation scripts...</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1536,30 +2175,425 @@
             }, 4000);
         }
 
+        // Management Dashboard Functions
+        function initiateSystemCheck() {
+            logToManagementTerminal('> SYSTEM CHECK initiated by Technology Operations Manager');
+            logToManagementTerminal('> Scanning all 23 active attractions...');
+            
+            showCodeDisplay('// COMPREHENSIVE SYSTEM CHECK\n// Technology Operations Manager Override\nsystem_check = TechOpsManager.full_diagnostic()\nfor attraction in active_attractions:\n    status = attraction.health_check()\n    log_status(attraction.name, status)\n// Generate executive summary');
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Animatronics: 47/47 units operational');
+                logToManagementTerminal('> Fog Systems: 12/12 zones active');
+                logToManagementTerminal('> Emergency Systems: 100% ready');
+            }, 1000);
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Network latency: 2ms (Excellent)');
+                logToManagementTerminal('> Docker containers: 34/34 running');
+                logToManagementTerminal('> ✅ SYSTEM CHECK COMPLETE - All systems optimal');
+                logToManagementTerminal('> Executive Summary: Ready for peak operations');
+            }, 2500);
+        }
+
+        function teamStatusUpdate() {
+            logToManagementTerminal('> TEAM STATUS REPORT requested');
+            logToManagementTerminal('> Current shift: 15 technicians on duty');
+            
+            showCodeDisplay('// TEAM MANAGEMENT REPORT\n// Real-time team coordination\nteam_status = TeamManager.get_current_shift()\nfor tech in on_duty_technicians:\n    print(f"{tech.name}: {tech.zone} - {tech.status}")\n// Monitor team efficiency');
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Zone A (Animatronics): 4 techs - All stations covered');
+                logToManagementTerminal('> Zone B (Effects): 3 techs - Running smooth');
+                logToManagementTerminal('> Zone C (Safety): 2 techs - Emergency ready');
+            }, 800);
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Zone D (Network): 3 techs - Infrastructure stable');
+                logToManagementTerminal('> Zone E (Guest Experience): 3 techs - 9.2/10 rating');
+                logToManagementTerminal('> ✅ TEAM STATUS: Fully operational - No issues');
+            }, 1800);
+        }
+
+        function emergencyDrill() {
+            logToManagementTerminal('> 🚨 EMERGENCY DRILL initiated by Management');
+            logToManagementTerminal('> Testing response times and protocols...');
+            
+            showCodeDisplay('// EMERGENCY DRILL PROTOCOL\n// Technology Operations Manager Authority\nemergency_drill = EmergencySystem.start_drill()\nall_systems.emergency_stop()\nteam.report_to_stations()\nresponse_time = measure_team_response()\n// Evaluate and improve');
+            
+            // Simulate emergency states
+            updateKPI('emergencyStatus', 'DRILL ACTIVE', 'warning');
+            updateKPI('teamStatus', 'RESPONDING', 'warning');
+            
+            setTimeout(() => {
+                logToManagementTerminal('> All teams reported to emergency stations');
+                logToManagementTerminal('> Response time: 23 seconds (Target: <30s) ✅');
+                logToManagementTerminal('> Emergency systems test: PASSED');
+            }, 1500);
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Drill complete - All systems returning to normal');
+                logToManagementTerminal('> Team performance: EXCELLENT');
+                updateKPI('emergencyStatus', 'Armed', 'ready');
+                updateKPI('teamStatus', '15', 'operational');
+            }, 3500);
+        }
+
+        function performanceReport() {
+            logToManagementTerminal('> PERFORMANCE REPORT generating...');
+            logToManagementTerminal('> Analyzing guest experience metrics...');
+            
+            showCodeDisplay('// PERFORMANCE ANALYTICS\n// Executive dashboard metrics\nperformance = Analytics.generate_report()\nguest_satisfaction = GuestExperience.current_rating()\nsystem_uptime = Infrastructure.uptime_percentage()\n// Executive summary for leadership');
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Guest satisfaction: 9.2/10 (↑0.3 from last week)');
+                logToManagementTerminal('> System uptime: 99.7% (Target: 99.5%) ✅');
+                logToManagementTerminal('> Attraction throughput: 127% of capacity');
+            }, 1200);
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Cost efficiency: $127k saved through automation');
+                logToManagementTerminal('> Team productivity: 94% (Industry leading)');
+                logToManagementTerminal('> 📊 REPORT: Exceeding all KPIs and targets');
+            }, 2500);
+        }
+
+        function scheduleMaintenanceWindow() {
+            logToManagementTerminal('> MAINTENANCE WINDOW scheduling...');
+            logToManagementTerminal('> Analyzing optimal maintenance times...');
+            
+            showCodeDisplay('// MAINTENANCE SCHEDULING\n// Minimize guest impact\nmaintenance = MaintenanceManager.optimal_window()\nfor system in critical_systems:\n    schedule = find_low_traffic_window(system)\n    maintenance.schedule(system, schedule)\n// Proactive maintenance strategy');
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Optimal window: 3:00 AM - 5:00 AM (lowest traffic)');
+                logToManagementTerminal('> Systems scheduled: Fog machine filter replacement');
+                logToManagementTerminal('> Animatronic calibration: Zones 3, 7, 12');
+            }, 1500);
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Network infrastructure update: 4:30 AM');
+                logToManagementTerminal('> Estimated downtime: 0 minutes (hot-swap ready)');
+                logToManagementTerminal('> ✅ MAINTENANCE: Scheduled with zero guest impact');
+            }, 2800);
+        }
+
+        function guestExperienceUpdate() {
+            logToManagementTerminal('> GUEST EXPERIENCE monitoring active...');
+            logToManagementTerminal('> Real-time feedback analysis...');
+            
+            showCodeDisplay('// GUEST EXPERIENCE OPTIMIZATION\n// Real-time satisfaction monitoring\nfeedback = GuestFeedback.live_analysis()\nfor zone in attraction_zones:\n    satisfaction = zone.current_rating()\n    if satisfaction < 8.0:\n        TechOps.enhance_experience(zone)\n// Continuous improvement');
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Current guest satisfaction: 9.2/10');
+                logToManagementTerminal('> Top feedback: "Best horror experience ever!"');
+                logToManagementTerminal('> Zone performance: All zones above 8.5/10');
+            }, 1000);
+            
+            setTimeout(() => {
+                logToManagementTerminal('> Scare effectiveness: 96% guest engagement');
+                logToManagementTerminal('> Wait times: 12% below target (excellent)');
+                logToManagementTerminal('> 🌟 GUEST EXPERIENCE: Exceeding expectations');
+            }, 2200);
+        }
+
+        function updateKPI(elementId, value, statusClass = '') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = value;
+                if (statusClass) {
+                    element.className = 'kpi-status ' + statusClass;
+                }
+            }
+        }
+
+        function logToManagementTerminal(message) {
+            const terminal = document.getElementById('managementTerminalOutput');
+            if (terminal) {
+                const timestamp = new Date().toLocaleTimeString();
+                terminal.textContent += `\n[${timestamp}] ${message}`;
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        }
+
+        function clearManagementTerminal() {
+            const terminal = document.getElementById('managementTerminalOutput');
+            if (terminal) {
+                terminal.textContent = `Universal Horror Unleashed - Technology Operations Manager
+[HANNIBAL HERRERA - AUTHORIZED]
+> All systems nominal - 24/7/365 operations active
+> Team of 15 technicians on current shift
+> Guest satisfaction: 9.2/10 (Above target)
+> Ready for management commands...`;
+            }
+        }
+
         // Fog machine functions
         function fogBurst() {
             const fogOutput = document.getElementById('fogOutput');
             if (fogOutput) {
-                fogOutput.classList.add('fog-burst');
-                setTimeout(() => fogOutput.classList.remove('fog-burst'), 2000);
+                fogOutput.className = 'fog-output fog-burst';
+                setTimeout(() => {
+                    fogOutput.className = 'fog-output';
+                }, 3000);
             }
             showCodeDisplay('// FOG BURST SEQUENCE\nfog_controller.burst(intensity=85, duration=3)\nlog_event("Fog burst activated")\ntime.sleep(0.5)\n// Dramatic fog release');
+            
+            logToFogTerminal('> FOG_BURST command initiated');
+            logToFogTerminal('> DMX512: CH001=255 CH002=85 CH003=180 (Burst Mode)');
+            logToFogTerminal('> M106 S217 ; Set fan speed to 85%');
+            logToFogTerminal('> G4 P500 ; Dwell 0.5 seconds for pressure build');
+            logToFogTerminal('> Zone A1: Pump pressure target 25 PSI');
+            logToFogTerminal('> Zone A2: Heater boost mode ACTIVE');
+            
+            // Update fog system status
+            updateFogStatus('fogStatus', 'BURSTING', 'active');
+            updateFogStatus('fogIntensity', '85%');
+            updateFogStatus('pumpStatus', 'ACTIVE', 'active');
+            updateFogStatus('pumpPressure', '25 PSI');
+            updateFogStatus('heaterStatus', 'BOOST', 'warning');
+            updateFogStatus('heaterTemp', '195°C');
+            
+            setTimeout(() => {
+                logToFogTerminal('> G1 F3000 ; Rapid pump cycle initiate');
+                logToFogTerminal('> Zone A1: Pressure 25.2 PSI ACHIEVED');
+                logToFogTerminal('> Zone A2: Heater 195°C OPTIMAL');
+                logToFogTerminal('> DMX512: CH004=255 ; Maximum fog density');
+                updateFogStatus('fogIntensity', '100%');
+            }, 800);
+            
+            setTimeout(() => {
+                logToFogTerminal('> M107 ; Fan speed normalize');
+                logToFogTerminal('> G28 ; Return to home position (standby)');
+                logToFogTerminal('> Zone A1: Pressure relief valve OPEN');
+                logToFogTerminal('> Zone A2: Heater to maintain temp');
+                logToFogTerminal('> DMX512: CH001=0 CH002=0 ; Fog burst complete');
+                updateFogStatus('fogStatus', 'IDLE');
+                updateFogStatus('fogIntensity', '0%');
+                updateFogStatus('pumpStatus', 'STANDBY');
+                updateFogStatus('pumpPressure', '0 PSI');
+                updateFogStatus('heaterStatus', 'READY');
+                updateFogStatus('heaterTemp', '180°C');
+            }, 3000);
         }
 
         function fogCascade() {
+            const fogOutput = document.getElementById('fogOutput');
+            if (fogOutput) {
+                fogOutput.className = 'fog-output fog-cascade';
+                setTimeout(() => {
+                    fogOutput.className = 'fog-output';
+                }, 6000);
+            }
             showCodeDisplay('// CASCADING FOG EFFECT\nfor zone in [1,2,3,4]:\n    fog_zone_activate(zone)\n    time.sleep(0.5)\n// Staggered fog release\nlog_event("Cascade complete")');
+            
+            logToFogTerminal('> CASCADE_SEQUENCE starting - 4 zones');
+            logToFogTerminal('> DMX512: Multi-zone cascade protocol');
+            logToFogTerminal('> G0 Z1 ; Move to zone 1 position');
+            logToFogTerminal('> M104 S180 ; Set Zone 1 heater temp');
+            logToFogTerminal('> Zone 1 (Floor Level): ACTIVATING low-level fog');
+            
+            updateFogStatus('fogStatus', 'CASCADING', 'active');
+            updateFogStatus('pumpStatus', 'CYCLING', 'active');
+            
+            // Simulate cascade effect with timed releases
+            setTimeout(() => {
+                logToFogTerminal('> G0 Z2 ; Move to zone 2 position');
+                logToFogTerminal('> DMX512: CH010=128 ; Zone 2 mid-level');
+                logToFogTerminal('> Zone 2 (Mid Level): Fog density 25%');
+                updateFogStatus('fogIntensity', '25%');
+                updateFogStatus('pumpPressure', '8 PSI');
+            }, 500);
+            
+            setTimeout(() => {
+                logToFogTerminal('> G0 Z3 ; Move to zone 3 position');
+                logToFogTerminal('> DMX512: CH015=192 ; Zone 3 high-level');
+                logToFogTerminal('> Zone 3 (High Level): Fog density 50%');
+                updateFogStatus('fogIntensity', '50%');
+                updateFogStatus('pumpPressure', '15 PSI');
+            }, 1000);
+            
+            setTimeout(() => {
+                logToFogTerminal('> G0 Z4 ; Move to zone 4 position');
+                logToFogTerminal('> DMX512: CH020=255 ; Zone 4 maximum');
+                logToFogTerminal('> Zone 4 (Ceiling): Full coverage 75%');
+                logToFogTerminal('> M106 S255 ; Maximum fan speed all zones');
+                updateFogStatus('fogIntensity', '75%');
+                updateFogStatus('pumpPressure', '20 PSI');
+            }, 1500);
+            
+            setTimeout(() => {
+                logToFogTerminal('> G1 F1000 ; Synchronized fog flow');
+                logToFogTerminal('> All Zones: CASCADE COMPLETE');
+                logToFogTerminal('> DMX512: Channels 1-20 synchronized');
+                updateFogStatus('fogStatus', 'FULL COVERAGE', 'warning');
+                updateFogStatus('fogIntensity', '90%');
+            }, 2000);
+            
+            setTimeout(() => {
+                logToFogTerminal('> G4 P2000 ; Dwell for natural dissipation');
+                logToFogTerminal('> M107 ; All fans to standby');
+                logToFogTerminal('> Zone 1-4: Beginning natural dissipation');
+                updateFogStatus('fogStatus', 'DISSIPATING');
+                updateFogStatus('fogIntensity', '30%');
+                updateFogStatus('pumpStatus', 'STANDBY');
+                updateFogStatus('pumpPressure', '0 PSI');
+            }, 4000);
+            
+            setTimeout(() => {
+                logToFogTerminal('> G28 ; All zones return home');
+                logToFogTerminal('> DMX512: All channels reset to 0');
+                updateFogStatus('fogStatus', 'IDLE');
+                updateFogStatus('fogIntensity', '0%');
+            }, 6000);
         }
 
         function fogGlow() {
+            const fogOutput = document.getElementById('fogOutput');
+            if (fogOutput) {
+                fogOutput.className = 'fog-output fog-glow';
+                setTimeout(() => {
+                    fogOutput.className = 'fog-output';
+                }, 7000);
+            }
             showCodeDisplay('// SAFE GLOW + FOG COMBO\nglow_light.activate()\nfog_controller.burst(intensity=70)\ntime.sleep(2)\nglow_light.fade_in(duration=3)\n// Atmospheric horror effect');
+            
+            logToFogTerminal('> GLOW_EFFECT sequence initiated');
+            logToFogTerminal('> DMX512: CH025=180 CH026=150 CH027=200 (RGB)');
+            logToFogTerminal('> M42 P13 S204 ; LED array 80% brightness');
+            logToFogTerminal('> G1 F2000 ; Smooth fog flow initiate');
+            logToFogTerminal('> Zone LED-A: Red 70% Green 58% Blue 78%');
+            logToFogTerminal('> Zone FOG-A: Setting intensity to 70%');
+            
+            updateFogStatus('ledStatus', 'ACTIVE', 'active');
+            updateFogStatus('ledBrightness', '80%');
+            updateFogStatus('fogStatus', 'GLOWING', 'active');
+            updateFogStatus('pumpStatus', 'MODERATE', 'active');
+            updateFogStatus('pumpPressure', '18 PSI');
+            updateFogStatus('fogIntensity', '70%');
+            
+            setTimeout(() => {
+                logToFogTerminal('> G1 F1500 ; LED fade-in sequence');
+                logToFogTerminal('> M42 P13 S255 ; LED maximum brightness');
+                logToFogTerminal('> DMX512: CH025=255 CH026=200 CH027=255');
+                logToFogTerminal('> Zone LED-A: Atmospheric effect OPTIMAL');
+                updateFogStatus('ledBrightness', '100%');
+                updateFogStatus('fogIntensity', '85%');
+            }, 2000);
+            
+            setTimeout(() => {
+                logToFogTerminal('> G4 P1000 ; Maintain glow effect');
+                logToFogTerminal('> Zone FOG-A: Reducing to ambient level');
+                logToFogTerminal('> DMX512: CH010=102 ; Ambient fog level');
+                updateFogStatus('fogStatus', 'AMBIENT');
+                updateFogStatus('fogIntensity', '40%');
+                updateFogStatus('pumpPressure', '10 PSI');
+            }, 4000);
+            
+            setTimeout(() => {
+                logToFogTerminal('> M42 P13 S51 ; LED dimming sequence');
+                logToFogTerminal('> G1 F500 ; Slow fade to standby');
+                logToFogTerminal('> Zone LED-A: Fading to 20% standby');
+                updateFogStatus('ledStatus', 'DIMMING', 'warning');
+                updateFogStatus('ledBrightness', '20%');
+                updateFogStatus('fogStatus', 'IDLE');
+                updateFogStatus('fogIntensity', '0%');
+                updateFogStatus('pumpStatus', 'STANDBY');
+                updateFogStatus('pumpPressure', '0 PSI');
+            }, 6000);
+            
+            setTimeout(() => {
+                logToFogTerminal('> M42 P13 S0 ; LED array OFF');
+                logToFogTerminal('> G28 ; Return all systems to home');
+                logToFogTerminal('> DMX512: All channels reset');
+                updateFogStatus('ledStatus', 'OFF');
+                updateFogStatus('ledBrightness', '0%');
+            }, 7000);
         }
 
         function clearFog() {
             const fogOutput = document.getElementById('fogOutput');
             if (fogOutput) {
-                fogOutput.classList.remove('fog-active', 'fog-burst');
+                fogOutput.className = 'fog-output fog-clearing';
+                setTimeout(() => {
+                    fogOutput.className = 'fog-output';
+                }, 4000);
             }
             showCodeDisplay('// CLEAR FOG SYSTEM\nfog_controller.stop_all()\nventilation.activate()\nlog_event("Fog cleared")\n// Reset for next sequence');
+            
+            logToFogTerminal('> CLEAR_FOG command received');
+            logToFogTerminal('> M107 ; Stop all fog generation');
+            logToFogTerminal('> M42 P14 S255 ; Ventilation system ACTIVE');
+            logToFogTerminal('> G1 F3000 ; Rapid ventilation cycle');
+            logToFogTerminal('> DMX512: All fog channels OFF');
+            logToFogTerminal('> Zone 1-4: Emergency fog clearing protocol');
+            
+            updateFogStatus('fogStatus', 'CLEARING', 'warning');
+            updateFogStatus('pumpStatus', 'STOPPED', 'error');
+            updateFogStatus('pumpPressure', '0 PSI');
+            updateFogStatus('ventStatus', 'ACTIVE', 'active');
+            updateFogStatus('ventSpeed', '1200 RPM');
+            
+            setTimeout(() => {
+                logToFogTerminal('> G1 F4500 ; Increase ventilation speed');
+                logToFogTerminal('> Zone 1-2: Fog dissipation 60% complete');
+                logToFogTerminal('> Zone 3-4: Fog dissipation 40% complete');
+                updateFogStatus('fogIntensity', '20%');
+                updateFogStatus('ventSpeed', '1800 RPM');
+            }, 1000);
+            
+            setTimeout(() => {
+                logToFogTerminal('> G28 ; Ventilation cycle complete');
+                logToFogTerminal('> M42 P14 S0 ; Ventilation OFF');
+                logToFogTerminal('> All Zones: Area cleared and ready');
+                logToFogTerminal('> DMX512: System reset complete');
+                updateFogStatus('fogStatus', 'IDLE');
+                updateFogStatus('fogIntensity', '0%');
+                updateFogStatus('ventStatus', 'OFF');
+                updateFogStatus('ventSpeed', '0 RPM');
+                updateFogStatus('pumpStatus', 'STANDBY');
+            }, 3000);
+        }
+
+        // Fog system status update function
+        function updateFogStatus(elementId, status, statusClass = '') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                if (elementId.includes('Intensity') || elementId.includes('Temp') || elementId.includes('Percent') || 
+                    elementId.includes('Pressure') || elementId.includes('Speed') || elementId.includes('Brightness')) {
+                    // This is a value field
+                    element.textContent = status;
+                } else {
+                    // This is a status indicator
+                    element.textContent = status;
+                    element.className = 'status-indicator';
+                    if (statusClass) {
+                        element.classList.add(statusClass);
+                    }
+                }
+            }
+        }
+
+        // Fog terminal logging functions
+        function logToFogTerminal(message) {
+            const terminal = document.getElementById('fogTerminalOutput');
+            if (terminal) {
+                const timestamp = new Date().toLocaleTimeString();
+                terminal.textContent += `\n[${timestamp}] ${message}`;
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        }
+
+        function clearFogTerminal() {
+            const terminal = document.getElementById('fogTerminalOutput');
+            if (terminal) {
+                terminal.textContent = `CHAUVET Hurricane 1000 - DMX Controller v3.2
+> Heater core: 180°C (Ready)
+> Fluid level: 95% (Full)
+> DMX512: Channel 001 active, Universe 1
+> G-Code processor: READY
+> Zone mapping: A1-A4 configured
+> Ready for fog commands...`;
+            }
         }
 
         // Python demo functions
@@ -1582,9 +2616,72 @@
             showCodeDisplay(code);
         }
 
+        function showCodeDisplay(code) {
+            // Log to Python terminal since we removed the bottom code display
+            logToPythonTerminal('> Code: ' + code.replace(/\n/g, '\n> '));
+        }
+
+        // Python terminal logging functions
+        function logToPythonTerminal(message) {
+            const terminal = document.getElementById('pythonTerminalOutput');
+            if (terminal) {
+                const timestamp = new Date().toLocaleTimeString();
+                terminal.textContent += `\n[${timestamp}] ${message}`;
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        }
+
+        function clearPythonTerminal() {
+            const terminal = document.getElementById('pythonTerminalOutput');
+            if (terminal) {
+                terminal.textContent = `Python 3.11.0 - Universal Automation Framework
+> Virtual environment: universal_ops
+> Docker engine: Running
+> All modules loaded successfully
+> Ready for automation scripts...`;
+            }
+        }
+
+        // Python demo functions
+        function showPythonDemo(type) {
+            switch(type) {
+                case 'serial':
+                    logToPythonTerminal('> Loading serial communication module...');
+                    logToPythonTerminal('> import serial, time');
+                    logToPythonTerminal('> arduino = serial.Serial("/dev/ttyUSB0", 9600)');
+                    logToPythonTerminal('> arduino.write(b"G1 X10 Y10 F1000\\n")');
+                    logToPythonTerminal('> Serial command sent to animatronic controller');
+                    break;
+                case 'raspberry':
+                    logToPythonTerminal('> Connecting to Raspberry Pi cluster...');
+                    logToPythonTerminal('> import RPi.GPIO as GPIO');
+                    logToPythonTerminal('> GPIO.setup(18, GPIO.OUT)  # Fog machine trigger');
+                    logToPythonTerminal('> GPIO.output(18, GPIO.HIGH)  # Activate fog');
+                    logToPythonTerminal('> Raspberry Pi fog system activated');
+                    break;
+                case 'docker':
+                    logToPythonTerminal('> Deploying Docker containers...');
+                    logToPythonTerminal('> docker-compose up -d horror-unleashed');
+                    logToPythonTerminal('> Container "witch-controller" starting...');
+                    logToPythonTerminal('> Container "fog-manager" ready');
+                    logToPythonTerminal('> All automation services deployed');
+                    break;
+                case 'monitoring':
+                    logToPythonTerminal('> System monitoring active...');
+                    logToPythonTerminal('> CPU: 23% | Memory: 67% | Network: 2ms');
+                    logToPythonTerminal('> Animatronics: 47/47 online');
+                    logToPythonTerminal('> Guest satisfaction: 9.2/10');
+                    logToPythonTerminal('> All systems within normal parameters');
+                    break;
+            }
+        }
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            showCodeDisplay('// Universal Horror Unleashed - Technology Operations Demo\n// Click any button to see live automation code!\n// Each demo shows real programming for horror attractions.\n\nM117 "System ready for demonstration"\nlog_event("Portfolio demo initialized")');
+            clearWitchTerminal();
+            clearFogTerminal();
+            clearManagementTerminal();
+            clearPythonTerminal();
         });
     </script>
 </body>
