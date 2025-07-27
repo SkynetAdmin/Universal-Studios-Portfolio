@@ -21,8 +21,8 @@
 ## 📁 Supporting Application Documents
 
 **Resume & Cover Letter:**
-- [📄 ATS-Optimized Resume](documents/Hannibal_Herrera_Resume_Universal_Parks_ATS_OPTIMIZED.md)
-- [📝 Targeted Cover Letter](documents/Hannibal_Herrera_Cover_Letter_Universal_Parks_TARGETED.md)
+- [📄 Resume](documents/Hannibal_Herrera_Resume_Universal_Parks_ATS_OPTIMIZED.md)
+- [📝 Cover Letter](documents/Hannibal_Herrera_Cover_Letter_Universal_Parks_TARGETED.md)
 - [📊 Additional Portfolio Details](documents/Hannibal_Herrera_Portfolio_Universal_Parks.md)
 
 **Website Portfolio:**
